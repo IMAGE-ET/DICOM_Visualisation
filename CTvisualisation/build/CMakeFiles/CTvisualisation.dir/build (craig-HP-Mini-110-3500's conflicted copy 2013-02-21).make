@@ -12,6 +12,9 @@ SUFFIXES =
 
 .SUFFIXES: .hpux_make_needs_suffix_list
 
+# Produce verbose output by default.
+VERBOSE = 1
+
 # Suppress display of executed commands.
 $(VERBOSE).SILENT:
 
@@ -38,10 +41,10 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/bin/cmake-gui
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/craig/Dropbox/program/CTvisualisation
+CMAKE_SOURCE_DIR = /home/craig/Desktop/program/CTvisualisation
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/craig/Dropbox/program/CTvisualisation/build
+CMAKE_BINARY_DIR = /home/craig/Desktop/program/CTvisualisation/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/CTvisualisation.dir/depend.make
@@ -54,17 +57,17 @@ include CMakeFiles/CTvisualisation.dir/flags.make
 
 CMakeFiles/CTvisualisation.dir/visualisation.cxx.o: CMakeFiles/CTvisualisation.dir/flags.make
 CMakeFiles/CTvisualisation.dir/visualisation.cxx.o: ../visualisation.cxx
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/craig/Dropbox/program/CTvisualisation/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/craig/Desktop/program/CTvisualisation/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/CTvisualisation.dir/visualisation.cxx.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/CTvisualisation.dir/visualisation.cxx.o -c /home/craig/Dropbox/program/CTvisualisation/visualisation.cxx
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/CTvisualisation.dir/visualisation.cxx.o -c /home/craig/Desktop/program/CTvisualisation/visualisation.cxx
 
 CMakeFiles/CTvisualisation.dir/visualisation.cxx.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CTvisualisation.dir/visualisation.cxx.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/craig/Dropbox/program/CTvisualisation/visualisation.cxx > CMakeFiles/CTvisualisation.dir/visualisation.cxx.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/craig/Desktop/program/CTvisualisation/visualisation.cxx > CMakeFiles/CTvisualisation.dir/visualisation.cxx.i
 
 CMakeFiles/CTvisualisation.dir/visualisation.cxx.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CTvisualisation.dir/visualisation.cxx.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/craig/Dropbox/program/CTvisualisation/visualisation.cxx -o CMakeFiles/CTvisualisation.dir/visualisation.cxx.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/craig/Desktop/program/CTvisualisation/visualisation.cxx -o CMakeFiles/CTvisualisation.dir/visualisation.cxx.s
 
 CMakeFiles/CTvisualisation.dir/visualisation.cxx.o.requires:
 .PHONY : CMakeFiles/CTvisualisation.dir/visualisation.cxx.o.requires
@@ -243,6 +246,6 @@ CMakeFiles/CTvisualisation.dir/clean:
 .PHONY : CMakeFiles/CTvisualisation.dir/clean
 
 CMakeFiles/CTvisualisation.dir/depend:
-	cd /home/craig/Dropbox/program/CTvisualisation/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/craig/Dropbox/program/CTvisualisation /home/craig/Dropbox/program/CTvisualisation /home/craig/Dropbox/program/CTvisualisation/build /home/craig/Dropbox/program/CTvisualisation/build /home/craig/Dropbox/program/CTvisualisation/build/CMakeFiles/CTvisualisation.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/craig/Desktop/program/CTvisualisation/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/craig/Desktop/program/CTvisualisation /home/craig/Desktop/program/CTvisualisation /home/craig/Desktop/program/CTvisualisation/build /home/craig/Desktop/program/CTvisualisation/build /home/craig/Desktop/program/CTvisualisation/build/CMakeFiles/CTvisualisation.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/CTvisualisation.dir/depend
 

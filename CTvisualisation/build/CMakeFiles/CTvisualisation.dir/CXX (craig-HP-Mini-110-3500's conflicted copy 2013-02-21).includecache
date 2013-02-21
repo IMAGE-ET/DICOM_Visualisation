@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/craig/Dropbox/program/CTvisualisation/glErrorCheck_inline.h
+/home/craig/Desktop/program/CTvisualisation/glErrorCheck_inline.h
 openGLStatus.h
-/home/craig/Dropbox/program/CTvisualisation/openGLStatus.h
+/home/craig/Desktop/program/CTvisualisation/openGLStatus.h
 
-/home/craig/Dropbox/program/CTvisualisation/openGLStatus.h
+/home/craig/Desktop/program/CTvisualisation/openGLStatus.h
 glErrorCheck_inline.h
-/home/craig/Dropbox/program/CTvisualisation/glErrorCheck_inline.h
+/home/craig/Desktop/program/CTvisualisation/glErrorCheck_inline.h
 
-/home/craig/Dropbox/program/CTvisualisation/visualisation.cxx
+/home/craig/Desktop/program/CTvisualisation/visualisation.cxx
 stdlib.h
 -
 GL/glut.h
@@ -40,7 +40,7 @@ itkExtractImageFilter.h
 itkRescaleIntensityImageFilter.h
 -
 openGLStatus.h
-/home/craig/Dropbox/program/CTvisualisation/openGLStatus.h
+/home/craig/Desktop/program/CTvisualisation/openGLStatus.h
 
 /home/craig/bin/ITK/Modules/Core/Common/itkConfigure.h
 

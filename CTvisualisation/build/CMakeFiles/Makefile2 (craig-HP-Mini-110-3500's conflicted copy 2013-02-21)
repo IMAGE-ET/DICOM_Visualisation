@@ -24,6 +24,9 @@ SUFFIXES =
 
 .SUFFIXES: .hpux_make_needs_suffix_list
 
+# Produce verbose output by default.
+VERBOSE = 1
+
 # Suppress display of executed commands.
 $(VERBOSE).SILENT:
 
@@ -50,10 +53,10 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/bin/cmake-gui
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/craig/Dropbox/program/CTvisualisation
+CMAKE_SOURCE_DIR = /home/craig/Desktop/program/CTvisualisation
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/craig/Dropbox/program/CTvisualisation/build
+CMAKE_BINARY_DIR = /home/craig/Desktop/program/CTvisualisation/build
 
 #=============================================================================
 # Target rules for target CMakeFiles/CTvisualisation.dir
@@ -62,7 +65,7 @@ CMAKE_BINARY_DIR = /home/craig/Dropbox/program/CTvisualisation/build
 CMakeFiles/CTvisualisation.dir/all:
 	$(MAKE) -f CMakeFiles/CTvisualisation.dir/build.make CMakeFiles/CTvisualisation.dir/depend
 	$(MAKE) -f CMakeFiles/CTvisualisation.dir/build.make CMakeFiles/CTvisualisation.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/craig/Dropbox/program/CTvisualisation/build/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/craig/Desktop/program/CTvisualisation/build/CMakeFiles  1
 	@echo "Built target CTvisualisation"
 .PHONY : CMakeFiles/CTvisualisation.dir/all
 
@@ -72,9 +75,9 @@ all: CMakeFiles/CTvisualisation.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/CTvisualisation.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/craig/Dropbox/program/CTvisualisation/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/craig/Desktop/program/CTvisualisation/build/CMakeFiles 1
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/CTvisualisation.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/craig/Dropbox/program/CTvisualisation/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/craig/Desktop/program/CTvisualisation/build/CMakeFiles 0
 .PHONY : CMakeFiles/CTvisualisation.dir/rule
 
 # Convenience name for target.

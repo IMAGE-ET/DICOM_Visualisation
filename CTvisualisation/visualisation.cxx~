@@ -70,59 +70,70 @@ void renderCrossSection()
 {
 	zSlice = (zSliceNumber+0.5)/noImages;
 
+	oldRange = noImages * zSpacing;
+	newRange = 1.5;
+	textureDepth = ((((zSliceNumber*zSpacing) - 0) * newRange) / oldRange) + -0.75;
+		  
 	glColor4f(1,1,1,0.75);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glBindTexture (GL_TEXTURE_3D, textureName);
 
 	glBegin (GL_QUADS);
-		glTexCoord3f(0.0,0.0,zSlice);
-	    glVertex3f(-0.75,zSlice,-0.75);
+	    glTexCoord3f(0.0,0.0,zSlice);
+	    glVertex3f(-0.75,textureDepth,-0.75);
 
 	    glTexCoord3f(1.0,0.0,zSlice);
-	    glVertex3f(0.75,zSlice,-0.75);
+	    glVertex3f(0.75,textureDepth,-0.75);
 
 	    glTexCoord3f(1.0, 1.0,zSlice);
-	    glVertex3f(0.75, zSlice,0.75);
+	    glVertex3f(0.75, textureDepth,0.75);
 
 	    glTexCoord3f(0.0, 1.0,zSlice);
-	    glVertex3f(-0.75, zSlice,0.75);
-    glEnd ();
+	    glVertex3f(-0.75, textureDepth,0.75);
+	glEnd ();
 
-    xSlice = (xSliceNumber+0.5)/xImages;
-
+	xSlice = (xSliceNumber+0.5)/xImages;
+	oldRange = xImages;
+	newRange = 1.5;
+	textureDepth = (((xSliceNumber - 0) * newRange) / oldRange) + -0.75;
+	
     glBindTexture (GL_TEXTURE_3D, textureName);
 
     glBegin (GL_QUADS);
     	glTexCoord3f(xSlice,1.0,0.0);
-        glVertex3f(xSlice,-0.75,-0.75);
+        glVertex3f(textureDepth,-0.75,-0.75);
 
         glTexCoord3f(xSlice,0.0,0.0);
-        glVertex3f(xSlice,-0.75,0.75);
+        glVertex3f(textureDepth,-0.75,0.75);
 
         glTexCoord3f(xSlice, 0.0,1.0);
-        glVertex3f(xSlice, 0.75,0.75);
+        glVertex3f(textureDepth, 0.75,0.75);
 
         glTexCoord3f(xSlice, 1.0,1.0);
-        glVertex3f(xSlice, 0.75,-0.75);
+        glVertex3f(textureDepth, 0.75,-0.75);
    glEnd ();
 
    ySlice = (ySliceNumber+0.5)/yImages;
-
+	
+	oldRange = yImages;
+	newRange = 1.5;
+	textureDepth = (((ySliceNumber - 0) * newRange) / oldRange) + -0.75;
+	
    glBindTexture (GL_TEXTURE_3D, textureName);
 
    glBegin (GL_QUADS);
    	   glTexCoord3f(0.0,ySlice,0.0);
-       glVertex3f(-0.75,-0.75,0);
+       glVertex3f(-0.75,-0.75,textureDepth);
 
        glTexCoord3f(1.0,ySlice,0.0);
-       glVertex3f(0.75,-0.75,0);
+       glVertex3f(0.75,-0.75,textureDepth);
 
        glTexCoord3f(1.0,ySlice,1.0);
-       glVertex3f(0.75, 0.75,0);
+       glVertex3f(0.75, 0.75,textureDepth);
 
        glTexCoord3f(0.0,ySlice, 1.0);
-       glVertex3f(-0.75, 0.75,0);
+       glVertex3f(-0.75, 0.75,textureDepth);
    glEnd ();
    glDisable(GL_BLEND);
 }
@@ -144,9 +155,9 @@ void renderVolume()
 	  for(int i = (noImages-1); i >= 0; i--)
 	  {
 		  imageDepth = (i+0.5)/noImages;
-		  oldRange = noImages + (noImages * zSpacing);
+		  oldRange = noImages * zSpacing;
 		  newRange = 1.5;
-		  textureDepth = (((i - 0) * newRange) / oldRange) + -0.75;
+		  textureDepth = ((((i*zSpacing) - 0) * newRange) / oldRange) + -0.75;
 		  glTexCoord3f(0.0,0.0,imageDepth);
 		  glVertex3f(-0.5,-0.5,textureDepth);
 

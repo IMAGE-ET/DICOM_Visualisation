@@ -1,3 +1,26 @@
-Author: Craig Parkinson
-Organisation: Bangor University
-Description: Visualisation of Medical Data using ITK, OpenGL for my dissertation
+#################################################################################################
+#	Author: Craig Parkinson								  	#
+#	Organisation: Bangor University							  	#
+#	Description: Visualisation of Medical Data using ITK, OpenGL for my dissertation	#
+#################################################################################################
+
+#################################################################################################
+
+Drop box is used to backup the project files
+
+Git Repository is used as versioning control
+
+CMake is used to manage the build process
+
+Eclipse is used to code the application using CDT
+
+GNU Auto tools chain is used to compile the application
+
+OpenGL is used to visualise the data
+
+ITK is used to read and create a volume from DICOM Images
+
+#################################################################################################
+
+
+

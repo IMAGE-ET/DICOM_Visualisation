@@ -4,7 +4,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/craig/Dropbox/program/CTvisualisation/visualisation.cxx" "/home/craig/Dropbox/program/CTvisualisation/build/CMakeFiles/CTvisualisation.dir/visualisation.cxx.o"
+  "/home/craig/Desktop/program/CTvisualisation/visualisation.cxx" "/home/craig/Desktop/program/CTvisualisation/build/CMakeFiles/CTvisualisation.dir/visualisation.cxx.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 

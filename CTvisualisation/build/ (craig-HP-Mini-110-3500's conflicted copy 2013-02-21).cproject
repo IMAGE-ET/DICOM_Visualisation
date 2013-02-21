@@ -436,14 +436,14 @@
 </target>
 <target name="Build" path="[Targets]/[exe] CTvisualisation" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/make</buildCommand>
-<buildArguments>-C "/home/craig/Dropbox/program/CTvisualisation/build" -j4</buildArguments>
+<buildArguments>-C "/home/craig/Desktop/program/CTvisualisation/build" -j4</buildArguments>
 <buildTarget>CTvisualisation</buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>
 <target name="Clean" path="[Targets]/[exe] CTvisualisation" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/cmake</buildCommand>
-<buildArguments>-E chdir "/home/craig/Dropbox/program/CTvisualisation/build" "/usr/bin/cmake" -P "CMakeFiles/CTvisualisation.dir/cmake_clean.cmake"</buildArguments>
+<buildArguments>-E chdir "/home/craig/Desktop/program/CTvisualisation/build" "/usr/bin/cmake" -P "CMakeFiles/CTvisualisation.dir/cmake_clean.cmake"</buildArguments>
 <buildTarget></buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
