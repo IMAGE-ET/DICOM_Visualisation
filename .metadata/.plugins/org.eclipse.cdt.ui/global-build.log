@@ -1,0 +1,875 @@
+13:56:31 **** Rebuild of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" 
+Info: Nothing to build for visualisation
+Info: Nothing to build for visualisation
+13:57:12 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp: In function 'int main()':
+..\src\visualisation.cpp:17: error: 'cout' was not declared in this scope
+..\src\visualisation.cpp:17: error: 'endl' was not declared in this scope
+13:58:40 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp:8:17: error: stdio: No such file or directory
+..\src\visualisation.cpp: In function 'int main()':
+..\src\visualisation.cpp:17: error: 'cout' was not declared in this scope
+..\src\visualisation.cpp:17: error: 'endl' was not declared in this scope
+13:58:43 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp:8:17: error: stdio: No such file or directory
+..\src\visualisation.cpp: In function 'int main()':
+..\src\visualisation.cpp:17: error: 'cout' was not declared in this scope
+..\src\visualisation.cpp:17: error: 'endl' was not declared in this scope
+13:59:16 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp:8:17: error: stdio: No such file or directory
+..\src\visualisation.cpp: In function 'int main()':
+..\src\visualisation.cpp:17: error: 'cout' was not declared in this scope
+..\src\visualisation.cpp:17: error: 'endl' was not declared in this scope
+14:12:54 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp:8:17: error: stdio: No such file or directory
+..\src\visualisation.cpp: In function 'int main()':
+..\src\visualisation.cpp:17: error: 'cout' was not declared in this scope
+..\src\visualisation.cpp:17: error: 'endl' was not declared in this scope
+14:26:51 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp:8:17: error: stdio: No such file or directory
+..\src\visualisation.cpp: In function 'int main()':
+..\src\visualisation.cpp:17: error: 'cout' was not declared in this scope
+..\src\visualisation.cpp:17: error: 'endl' was not declared in this scope
+14:27:08 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" 
+src\visualisation.o: In function `glutInit_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:486: undefined reference to `__glutInitWithExit'
+src\visualisation.o: In function `glutCreateWindow_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:503: undefined reference to `__glutCreateWindowWithExit'
+src\visualisation.o: In function `glutCreateMenu_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:549: undefined reference to `__glutCreateMenuWithExit'
+collect2: ld returned 1 exit status
+14:27:19 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -o visualisation.exe "src\\visualisation.o" 
+src\visualisation.o: In function `glutInit_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:486: undefined reference to `__glutInitWithExit'
+src\visualisation.o: In function `glutCreateWindow_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:503: undefined reference to `__glutCreateWindowWithExit'
+src\visualisation.o: In function `glutCreateMenu_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:549: undefined reference to `__glutCreateMenuWithExit'
+collect2: ld returned 1 exit status
+14:37:03 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" 
+src\visualisation.o: In function `glutInit_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:486: undefined reference to `__glutInitWithExit'
+src\visualisation.o: In function `glutCreateWindow_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:503: undefined reference to `__glutCreateWindowWithExit'
+src\visualisation.o: In function `glutCreateMenu_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:549: undefined reference to `__glutCreateMenuWithExit'
+src\visualisation.o: In function `main':
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:20: undefined reference to `glutInitDisplayMode'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:21: undefined reference to `glutInitWindowPosition'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:22: undefined reference to `glutInitWindowSize'
+collect2: ld returned 1 exit status
+14:37:13 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -o visualisation.exe "src\\visualisation.o" 
+src\visualisation.o: In function `glutInit_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:486: undefined reference to `__glutInitWithExit'
+src\visualisation.o: In function `glutCreateWindow_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:503: undefined reference to `__glutCreateWindowWithExit'
+src\visualisation.o: In function `glutCreateMenu_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:549: undefined reference to `__glutCreateMenuWithExit'
+src\visualisation.o: In function `main':
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:20: undefined reference to `glutInitDisplayMode'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:21: undefined reference to `glutInitWindowPosition'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:22: undefined reference to `glutInitWindowSize'
+collect2: ld returned 1 exit status
+14:37:52 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp: In function 'int main(int, char**)':
+..\src\visualisation.cpp:19: error: variable or field 'glutInit_ATEXIT_HACK' declared void
+..\src\visualisation.cpp:20: error: variable or field 'glutInitDisplayMode' declared void
+..\src\visualisation.cpp:21: error: variable or field 'glutInitWindowPosition' declared void
+..\src\visualisation.cpp:22: error: variable or field 'glutInitWindowSize' declared void
+..\src\visualisation.cpp:23: error: variable or field 'glutCreateWindow_ATEXIT_HACK' declared void
+14:37:57 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp: In function 'int main(int, char**)':
+..\src\visualisation.cpp:19: error: variable or field 'glutInit_ATEXIT_HACK' declared void
+..\src\visualisation.cpp:20: error: variable or field 'glutInitDisplayMode' declared void
+..\src\visualisation.cpp:21: error: variable or field 'glutInitWindowPosition' declared void
+..\src\visualisation.cpp:22: error: variable or field 'glutInitWindowSize' declared void
+..\src\visualisation.cpp:23: error: variable or field 'glutCreateWindow_ATEXIT_HACK' declared void
+14:38:33 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp: In function 'int main(int, char**)':
+..\src\visualisation.cpp:19: error: variable or field 'glutInit_ATEXIT_HACK' declared void
+..\src\visualisation.cpp:20: error: variable or field 'glutInitDisplayMode' declared void
+..\src\visualisation.cpp:21: error: variable or field 'glutInitWindowPosition' declared void
+..\src\visualisation.cpp:22: error: variable or field 'glutInitWindowSize' declared void
+..\src\visualisation.cpp:23: error: variable or field 'glutCreateWindow_ATEXIT_HACK' declared void
+14:39:11 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp: In function 'int main(int, char**)':
+..\src\visualisation.cpp:19: error: variable or field 'glutInit_ATEXIT_HACK' declared void
+..\src\visualisation.cpp:20: error: variable or field 'glutInitDisplayMode' declared void
+..\src\visualisation.cpp:21: error: variable or field 'glutInitWindowPosition' declared void
+..\src\visualisation.cpp:22: error: variable or field 'glutInitWindowSize' declared void
+..\src\visualisation.cpp:23: error: variable or field 'glutCreateWindow_ATEXIT_HACK' declared void
+14:39:21 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" 
+src\visualisation.o: In function `glutInit_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:486: undefined reference to `__glutInitWithExit'
+src\visualisation.o: In function `glutCreateWindow_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:503: undefined reference to `__glutCreateWindowWithExit'
+src\visualisation.o: In function `glutCreateMenu_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:549: undefined reference to `__glutCreateMenuWithExit'
+src\visualisation.o: In function `main':
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:20: undefined reference to `glutInitDisplayMode'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:21: undefined reference to `glutInitWindowPosition'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:22: undefined reference to `glutInitWindowSize'
+collect2: ld returned 1 exit status
+14:39:31 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -o visualisation.exe "src\\visualisation.o" 
+src\visualisation.o: In function `glutInit_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:486: undefined reference to `__glutInitWithExit'
+src\visualisation.o: In function `glutCreateWindow_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:503: undefined reference to `__glutCreateWindowWithExit'
+src\visualisation.o: In function `glutCreateMenu_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:549: undefined reference to `__glutCreateMenuWithExit'
+src\visualisation.o: In function `main':
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:20: undefined reference to `glutInitDisplayMode'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:21: undefined reference to `glutInitWindowPosition'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:22: undefined reference to `glutInitWindowSize'
+collect2: ld returned 1 exit status
+14:43:20 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -o visualisation.exe "src\\visualisation.o" -lglut -lGLU 
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../mingw32/bin/ld.exe: cannot find -lglut
+collect2: ld returned 1 exit status
+14:43:31 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -o visualisation.exe "src\\visualisation.o" -lglut -lGLU 
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../mingw32/bin/ld.exe: cannot find -lglut
+collect2: ld returned 1 exit status
+14:52:59 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -o visualisation.exe "src\\visualisation.o" -lglut -lGLU 
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../mingw32/bin/ld.exe: cannot find -lglut
+collect2: ld returned 1 exit status
+14:54:54 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -o visualisation.exe "src\\visualisation.o" -lglut -lGLU 
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../mingw32/bin/ld.exe: cannot find -lglut
+collect2: ld returned 1 exit status
+14:56:33 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -o visualisation.exe "src\\visualisation.o" 
+src\visualisation.o: In function `glutInit_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:486: undefined reference to `__glutInitWithExit'
+src\visualisation.o: In function `glutCreateWindow_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:503: undefined reference to `__glutCreateWindowWithExit'
+src\visualisation.o: In function `glutCreateMenu_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:549: undefined reference to `__glutCreateMenuWithExit'
+src\visualisation.o: In function `main':
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:20: undefined reference to `glutInitDisplayMode'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:21: undefined reference to `glutInitWindowPosition'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:22: undefined reference to `glutInitWindowSize'
+collect2: ld returned 1 exit status
+14:56:38 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -o visualisation.exe "src\\visualisation.o" 
+src\visualisation.o: In function `glutInit_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:486: undefined reference to `__glutInitWithExit'
+src\visualisation.o: In function `glutCreateWindow_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:503: undefined reference to `__glutCreateWindowWithExit'
+src\visualisation.o: In function `glutCreateMenu_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:549: undefined reference to `__glutCreateMenuWithExit'
+src\visualisation.o: In function `main':
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:20: undefined reference to `glutInitDisplayMode'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:21: undefined reference to `glutInitWindowPosition'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:22: undefined reference to `glutInitWindowSize'
+collect2: ld returned 1 exit status
+14:58:07 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -o visualisation.exe "src\\visualisation.o" 
+src\visualisation.o: In function `glutInit_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:486: undefined reference to `__glutInitWithExit'
+src\visualisation.o: In function `glutCreateWindow_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:503: undefined reference to `__glutCreateWindowWithExit'
+src\visualisation.o: In function `glutCreateMenu_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:549: undefined reference to `__glutCreateMenuWithExit'
+src\visualisation.o: In function `main':
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:20: undefined reference to `glutInitDisplayMode'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:21: undefined reference to `glutInitWindowPosition'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:22: undefined reference to `glutInitWindowSize'
+collect2: ld returned 1 exit status
+15:02:35 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -o visualisation.exe "src\\visualisation.o" 
+src\visualisation.o: In function `glutInit_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:486: undefined reference to `__glutInitWithExit'
+src\visualisation.o: In function `glutCreateWindow_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:503: undefined reference to `__glutCreateWindowWithExit'
+src\visualisation.o: In function `glutCreateMenu_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:549: undefined reference to `__glutCreateMenuWithExit'
+src\visualisation.o: In function `main':
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:20: undefined reference to `glutInitDisplayMode'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:21: undefined reference to `glutInitWindowPosition'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:22: undefined reference to `glutInitWindowSize'
+collect2: ld returned 1 exit status
+15:03:46 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ "-LC:\\Users\\Craig\\Desktop\\program\\visualisation\\lib\\glut" -o visualisation.exe "src\\visualisation.o" -lglut 
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../mingw32/bin/ld.exe: cannot find -lglut
+collect2: ld returned 1 exit status
+15:03:55 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ "-LC:\\Users\\Craig\\Desktop\\program\\visualisation\\lib\\glut" -o visualisation.exe "src\\visualisation.o" -lglut 
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../mingw32/bin/ld.exe: cannot find -lglut
+collect2: ld returned 1 exit status
+15:04:04 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ "-LC:\\Users\\Craig\\Desktop\\program\\visualisation\\lib\\glut" -o visualisation.exe "src\\visualisation.o" -lglut 
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../mingw32/bin/ld.exe: cannot find -lglut
+collect2: ld returned 1 exit status
+15:04:46 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ "-LC:\\Users\\Craig\\Desktop\\program\\visualisation\\lib\\glut" -o visualisation.exe "src\\visualisation.o" -lglut32 
+src\visualisation.o: In function `glutInit_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:486: undefined reference to `__glutInitWithExit'
+src\visualisation.o: In function `glutCreateWindow_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:503: undefined reference to `__glutCreateWindowWithExit'
+src\visualisation.o: In function `glutCreateMenu_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:549: undefined reference to `__glutCreateMenuWithExit'
+src\visualisation.o: In function `main':
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:20: undefined reference to `glutInitDisplayMode'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:21: undefined reference to `glutInitWindowPosition'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:22: undefined reference to `glutInitWindowSize'
+collect2: ld returned 1 exit status
+15:04:56 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ "-LC:\\Users\\Craig\\Desktop\\program\\visualisation\\lib\\glut" -o visualisation.exe "src\\visualisation.o" -lglut32 
+src\visualisation.o: In function `glutInit_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:486: undefined reference to `__glutInitWithExit'
+src\visualisation.o: In function `glutCreateWindow_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:503: undefined reference to `__glutCreateWindowWithExit'
+src\visualisation.o: In function `glutCreateMenu_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:549: undefined reference to `__glutCreateMenuWithExit'
+src\visualisation.o: In function `main':
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:20: undefined reference to `glutInitDisplayMode'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:21: undefined reference to `glutInitWindowPosition'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:22: undefined reference to `glutInitWindowSize'
+collect2: ld returned 1 exit status
+15:07:07 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+src\visualisation.o: In function `glutInit_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:486: undefined reference to `__glutInitWithExit'
+src\visualisation.o: In function `glutCreateWindow_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:503: undefined reference to `__glutCreateWindowWithExit'
+src\visualisation.o: In function `glutCreateMenu_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:549: undefined reference to `__glutCreateMenuWithExit'
+src\visualisation.o: In function `main':
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:20: undefined reference to `glutInitDisplayMode'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:21: undefined reference to `glutInitWindowPosition'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:22: undefined reference to `glutInitWindowSize'
+collect2: ld returned 1 exit status
+15:07:52 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+src\visualisation.o: In function `glutInit_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:486: undefined reference to `__glutInitWithExit'
+src\visualisation.o: In function `glutCreateWindow_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:503: undefined reference to `__glutCreateWindowWithExit'
+src\visualisation.o: In function `glutCreateMenu_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:549: undefined reference to `__glutCreateMenuWithExit'
+src\visualisation.o: In function `main':
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:20: undefined reference to `glutInitDisplayMode'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:21: undefined reference to `glutInitWindowPosition'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:22: undefined reference to `glutInitWindowSize'
+collect2: ld returned 1 exit status
+15:32:11 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -o visualisation.exe "src\\visualisation.o" 
+src\visualisation.o: In function `glutInit_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:486: undefined reference to `__glutInitWithExit'
+src\visualisation.o: In function `glutCreateWindow_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:503: undefined reference to `__glutCreateWindowWithExit'
+src\visualisation.o: In function `glutCreateMenu_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:549: undefined reference to `__glutCreateMenuWithExit'
+src\visualisation.o: In function `main':
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:20: undefined reference to `glutInitDisplayMode'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:21: undefined reference to `glutInitWindowPosition'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:22: undefined reference to `glutInitWindowSize'
+collect2: ld returned 1 exit status
+15:34:33 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -o visualisation.exe "src\\visualisation.o" 
+src\visualisation.o: In function `glutInit_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:486: undefined reference to `__glutInitWithExit'
+src\visualisation.o: In function `glutCreateWindow_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:503: undefined reference to `__glutCreateWindowWithExit'
+src\visualisation.o: In function `glutCreateMenu_ATEXIT_HACK':
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../include/GL/glut.h:549: undefined reference to `__glutCreateMenuWithExit'
+src\visualisation.o: In function `main':
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:20: undefined reference to `glutInitDisplayMode'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:21: undefined reference to `glutInitWindowPosition'
+C:\Users\Craig\Desktop\program\visualisation\Debug/../src/visualisation.cpp:22: undefined reference to `glutInitWindowSize'
+collect2: ld returned 1 exit status
+15:39:48 **** Rebuild of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" 
+Info: Nothing to build for visualisation
+15:43:55 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+Info: Nothing to build for visualisation
+Info: Nothing to build for visualisation
+15:44:39 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+15:49:04 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+15:49:42 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+15:51:42 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+15:53:06 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp: In function 'int main(int, char**)':
+..\src\visualisation.cpp:17: error: 'GL_Setup' was not declared in this scope
+15:53:43 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp: In function 'int main(int, char**)':
+..\src\visualisation.cpp:17: error: 'GL_Setup' was not declared in this scope
+15:53:58 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp: In function 'int main(int, char**)':
+..\src\visualisation.cpp:17: error: 'GL_Setup' was not declared in this scope
+00:49:04 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+Info: Nothing to build for visualisation
+00:52:35 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp: In function 'int main(int, char**)':
+..\src\visualisation.cpp:25: error: 'Render' was not declared in this scope
+00:55:17 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp:52: error: '::main' must return 'int'
+00:56:11 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+Info: Nothing to build for visualisation
+01:33:40 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp: In function 'int main(int, char**)':
+..\src\visualisation.cpp:30: error: 'createWindow' was not declared in this scope
+..\src\visualisation.cpp:38: error: 'Mouse' was not declared in this scope
+..\src\visualisation.cpp:39: error: 'PassiveMotion' was not declared in this scope
+..\src\visualisation.cpp: In function 'void createWindow()':
+..\src\visualisation.cpp:57: error: 'Render' was not declared in this scope
+01:34:01 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp: In function 'int main(int, char**)':
+..\src\visualisation.cpp:30: error: 'createWindow' was not declared in this scope
+..\src\visualisation.cpp:38: error: 'Mouse' was not declared in this scope
+..\src\visualisation.cpp:39: error: 'PassiveMotion' was not declared in this scope
+..\src\visualisation.cpp: In function 'void createWindow()':
+..\src\visualisation.cpp:57: error: 'Render' was not declared in this scope
+01:34:52 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp: In function 'int main(int, char**)':
+..\src\visualisation.cpp:30: error: 'createWindow' was not declared in this scope
+..\src\visualisation.cpp:38: error: 'Mouse' was not declared in this scope
+..\src\visualisation.cpp:39: error: 'PassiveMotion' was not declared in this scope
+..\src\visualisation.cpp: In function 'void createWindow()':
+..\src\visualisation.cpp:57: error: 'Render' was not declared in this scope
+01:35:57 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp: In function 'int main(int, char**)':
+..\src\visualisation.cpp:30: error: 'createWindow' was not declared in this scope
+..\src\visualisation.cpp:38: error: 'Mouse' was not declared in this scope
+..\src\visualisation.cpp:39: error: 'PassiveMotion' was not declared in this scope
+..\src\visualisation.cpp: In function 'void createWindow()':
+..\src\visualisation.cpp:57: error: 'Render' was not declared in this scope
+01:39:19 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp: In function 'int main(int, char**)':
+..\src\visualisation.cpp:30: error: 'createWindow' was not declared in this scope
+..\src\visualisation.cpp:38: error: 'Mouse' was not declared in this scope
+..\src\visualisation.cpp:39: error: 'PassiveMotion' was not declared in this scope
+..\src\visualisation.cpp: In function 'void createWindow()':
+..\src\visualisation.cpp:57: error: 'Render' was not declared in this scope
+01:40:34 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp: In function 'int main(int, char**)':
+..\src\visualisation.cpp:30: error: 'createWindow' was not declared in this scope
+..\src\visualisation.cpp:38: error: 'Mouse' was not declared in this scope
+..\src\visualisation.cpp:39: error: 'PassiveMotion' was not declared in this scope
+..\src\visualisation.cpp: In function 'void createWindow()':
+..\src\visualisation.cpp:57: error: 'Render' was not declared in this scope
+01:40:53 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp: In function 'int main(int, char**)':
+..\src\visualisation.cpp:37: error: 'Render' was not declared in this scope
+..\src\visualisation.cpp:44: error: 'Mouse' was not declared in this scope
+..\src\visualisation.cpp:45: error: 'PassiveMotion' was not declared in this scope
+01:41:53 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+Info: Nothing to build for visualisation
+01:42:53 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp: In function 'int main(int, char**)':
+..\src\visualisation.cpp:37: error: 'Render' was not declared in this scope
+..\src\visualisation.cpp:44: error: 'Mouse' was not declared in this scope
+..\src\visualisation.cpp:45: error: 'PassiveMotion' was not declared in this scope
+01:43:24 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+01:44:44 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+02:00:12 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+02:03:36 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+02:17:31 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+02:21:21 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+02:24:56 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+02:26:38 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+02:36:52 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+02:40:54 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+02:42:26 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+13:13:39 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+13:15:16 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+13:16:39 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+13:16:57 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+13:19:03 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+13:29:33 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+13:31:43 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+13:33:53 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+13:34:43 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+14:18:35 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+14:29:39 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+14:34:06 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+14:45:17 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+14:45:58 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+14:46:47 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+14:47:16 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+18:55:55 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+18:58:07 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:01:42 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:04:16 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:05:36 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:06:12 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:06:57 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:07:27 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:07:50 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:08:13 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:09:18 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:09:50 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:10:17 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:11:14 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:11:54 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:12:27 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:13:12 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:16:02 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:22:34 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:24:03 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:24:51 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:25:19 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+..\src\visualisation.cpp:48:14: error: invalid suffix "f" on integer constant
+19:25:32 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:26:07 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:27:02 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:33:51 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:36:01 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:36:30 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:54:22 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:55:20 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:55:58 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+19:57:13 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+23:06:44 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+23:08:08 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+23:19:31 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+c:/qtsdk/mingw/bin/../lib/gcc/mingw32/4.4.0/../../../../mingw32/bin/ld.exe: cannot open output file visualisation.exe: Permission denied
+collect2: ld returned 1 exit status
+23:21:52 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+Info: Nothing to build for visualisation
+23:23:58 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+23:29:18 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+23:33:43 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+23:36:18 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+23:37:18 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+23:42:10 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+23:43:18 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+23:44:33 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+23:46:06 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+23:47:20 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+23:48:39 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+23:51:32 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:07:16 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:12:10 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:14:38 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:16:17 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:18:39 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:19:45 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:21:03 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:22:16 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:24:01 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:25:27 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:28:07 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:31:32 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:32:07 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:33:10 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:33:34 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:34:02 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:34:46 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:36:14 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:37:34 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:39:30 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:40:36 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:42:38 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:44:07 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+00:44:41 **** Incremental Build of configuration Debug for project visualisation ****
+Info: Internal Builder is used for build
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\visualisation.o" "..\\src\\visualisation.cpp" 
+g++ -o visualisation.exe "src\\visualisation.o" -lglut32 -lglu32 -lopengl32 
+Info: Nothing to build for visualisation
+Info: Nothing to build for visualisation
+Info: Nothing to build for visualisation
