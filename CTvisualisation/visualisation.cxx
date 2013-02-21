@@ -734,8 +734,6 @@ int	main(int argc, char **argv)
 	ySpacing = spacing[1];
 	zSpacing = spacing[2];
 
-	//glBindTexture(GL_PROXY_TEXTURE_3D,textureName);
-
 	glTexImage3D(GL_PROXY_TEXTURE_3D, 0, GL_LUMINANCE, lWidth, lHeight, lDepth, 0, GL_LUMINANCE,GL_FLOAT, NULL);
 
 	GLint textureWidth;
