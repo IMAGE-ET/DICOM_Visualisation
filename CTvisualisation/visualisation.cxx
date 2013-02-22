@@ -1,8 +1,18 @@
 /**
  * @author Craig Parkinson
  * @title visualisation
- * @description create four different view ports displaying CT Data
+ * @date 22/02/2013
  */
+
+/**
+* This application reads in a dicom series from the command line,
+* the series is read in as a itk Volume, the values are rescaled
+* allowing for the correct display of the data.
+* This is then converted to a three dimensional OpenGL texture
+* The window is generated with four different viewports, the application
+* iterates across the texture to visualise the data.
+* If the user right clicks on the window, they can change the view of the data.
+*/
 
 #include	<stdlib.h>
 #include	<GL/glut.h>
@@ -67,16 +77,18 @@ using namespace std;
  * @description render axial plane slice of the volume
  */
 void renderCrossSection()
-{
+{	
+	//Transverse Plane
 	zSlice = (zSliceNumber+0.5)/noImages;
 
+	//calculate the correct depth of the image
 	oldRange = noImages * zSpacing;
 	newRange = 1.5;
 	textureDepth = ((((zSliceNumber*zSpacing) - 0) * newRange) / oldRange) + -0.75;
 		  
-	glColor4f(1,1,1,0.75);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	
 	glBindTexture (GL_TEXTURE_3D, textureName);
 
 	glBegin (GL_QUADS);
@@ -93,11 +105,12 @@ void renderCrossSection()
 	    glVertex3f(-0.75, textureDepth,0.75);
 	glEnd ();
 
+	//Sagital Plane
 	xSlice = (xSliceNumber+0.5)/xImages;
 	oldRange = xImages;
 	newRange = 1.5;
 	textureDepth = (((xSliceNumber - 0) * newRange) / oldRange) + -0.75;
-	
+
     glBindTexture (GL_TEXTURE_3D, textureName);
 
     glBegin (GL_QUADS);
@@ -114,12 +127,13 @@ void renderCrossSection()
         glVertex3f(textureDepth, 0.75,-0.75);
    glEnd ();
 
+	//Coronal Plane
    ySlice = (ySliceNumber+0.5)/yImages;
 	
 	oldRange = yImages;
 	newRange = 1.5;
 	textureDepth = (((ySliceNumber - 0) * newRange) / oldRange) + -0.75;
-	
+
    glBindTexture (GL_TEXTURE_3D, textureName);
 
    glBegin (GL_QUADS);
