@@ -23,7 +23,7 @@ IF(OpenGL_FOUND)
   INCLUDE_DIRECTORIES(${OpenGL_INCLUDE_DIRS})
 ENDIF(OpenGL_FOUND)
 
-ADD_EXECUTABLE(CTvisualisation visualisation.cxx histogramMouseFunc.cxx histogramKeyboardFunc.cxx global.cxx menu.cxx segmentationMethods.cxx)
+ADD_EXECUTABLE(CTvisualisation visualisation.cxx histogramMouseFunc.cxx histogramKeyboardFunc.cxx global.cxx menu.cxx segmentationMethods.cxx viewSegmentedData.cxx)
 
 SET(requiredLibs ${requiredLibs} mgl)
 TARGET_LINK_LIBRARIES(CTvisualisation ${ITK_LIBRARIES} ${MATHGL_LIBRARIES} ${GLUT_LIBRARIES} ${OPENGL_LIBRARIES} ${requiredLibs} ${optionalLibs})

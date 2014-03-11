@@ -1184,69 +1184,6 @@ void compileDisplayLists()
 }
 
 /**
- * @title connectedThresholdSegmentation
- * @description segment the volume based on a seed value
- */
-void connectedThresholdSegmentation()
-{
-	typedef itk::ConnectedThresholdImageFilter< volumeImageType,binaryVolumeType > ConnectedFilterType;
-	ConnectedFilterType::Pointer connectedThreshold = ConnectedFilterType::New();
-	connectedThreshold->SetInput(volumeImage);
-
-	cout << "Please enter the lower threshold value followed by a <return> or <enter>: ";
-    float lowerThreshold = tempMin;
-
-	while ( !(cin >> lowerThreshold) || (lowerThreshold < tempMin))
-    {
-       	// Enter this loop if input fails because of invalid data.
-
-		cout << "Incorrect value, please try again: ";
-        cin.clear ();   // reset the "failure" flag
-
-        // The input "cursor" is still positioned at the beginning of
-        // the invalid input, so we need to skip past it.
-       	cin.ignore (1000, '\n');
-   	}
-
-	cout << "Please enter the Upper threshold value followed by a <return> or <enter>: ";
-    float upperThreshold = tempMax;
-
-	while ( ! (cin >> upperThreshold) || (upperThreshold < lowerThreshold) || (upperThreshold > tempMax))
-    {
-       	// Enter this loop if input fails because of invalid data.
-
-       	cout << "Incorrect value, please try again: ";
-       	cin.clear ();   // reset the "failure" flag
-
-       	// The input "cursor" is still positioned at the beginning of
-       	// the invalid input, so we need to skip past it.
-
-       	cin.ignore (1000, '\n');
-    }
-
-	connectedThreshold->SetLower(lowerThreshold);
-	connectedThreshold->SetUpper(upperThreshold);
-	connectedThreshold->SetReplaceValue(175);
-
-	float oR = 1.8;
-	float yNr = yImages;
-	float xNr = xImages;
-
-	//take the texture coordinates and convert them to volume coordinates
-	int nX = (((seedX-(-0.9))*xNr)/oR)+0;
-	int nY = (((-seedY-(-0.9))*yNr)/oR)+0;
-
-	volumeImageType::IndexType index;
-	index[0] = nX;
-	index[1] = nY;
-	index[2] = zSliceNumber;
-
-	connectedThreshold->SetSeed(index);
-	connectedThreshold->Update();
-	binaryVolume = connectedThreshold->GetOutput();
-}
-
-/**
  * @title generateVolumeTexture
  * @description create a 3D texture of the DICOM volume
  */
@@ -1305,47 +1242,6 @@ void generateVolumeTexture()
 
 		glErrorCheck();
 		glTexImage3D(GL_TEXTURE_3D,0, GL_INTENSITY, lWidth, lHeight, lDepth,0,GL_LUMINANCE,GL_UNSIGNED_BYTE, volumePointer);
-	}
-}
-
-/**
- * @title viewSegmentedData
- * @description set the 3D texture to binary data
- */
-
-void viewSegmentedData()
-{
-	//generate a 3d texture from the binary volume
-	binaryPixelType *binaryVolumePointer = binaryVolume->GetBufferPointer();
-	signed short lWidth = binaryVolume->GetBufferedRegion().GetSize()[0];
-	signed short lHeight = binaryVolume->GetBufferedRegion().GetSize()[1];
-	signed short lDepth = binaryVolume->GetBufferedRegion().GetSize()[2];
-
-	glTexImage3D(GL_PROXY_TEXTURE_3D, 0, GL_LUMINANCE, lWidth, lHeight, lDepth, 0, GL_LUMINANCE,GL_UNSIGNED_BYTE, NULL);
-
-	GLint textureWidth;
-	GLint textureDepth;
-	glGetTexLevelParameteriv(GL_PROXY_TEXTURE_3D, 0, GL_TEXTURE_WIDTH, &textureWidth);
-	glGetTexLevelParameteriv(GL_PROXY_TEXTURE_3D, 0, GL_TEXTURE_DEPTH, &textureDepth);
-
-
-	if(textureWidth == 0 || textureDepth == 0)
-	{
-		cout << "Segmented Data can't be generated" << endl;
-	}
-	else
-	{
-		glBindTexture(GL_TEXTURE_3D,textureName+1);
-		glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-		glTexParameteri (GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-		glTexParameteri(GL_TEXTURE_3D,GL_TEXTURE_WRAP_R,GL_CLAMP_TO_BORDER);
-		glTexParameteri (GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri (GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-
-		//use alpha blending to generate the texture
-		glTexImage3D(GL_TEXTURE_3D, 0, GL_ALPHA, lWidth, lHeight, lDepth, 0, GL_ALPHA,GL_UNSIGNED_BYTE, binaryVolumePointer);
-		viewSegmented = 1;
 	}
 }
 

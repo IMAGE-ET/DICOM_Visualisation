@@ -6,7 +6,9 @@
  */
 
 #include "segmentationMethods.h"
+#include "viewSegmentedData.h"
 #include "global.h"
+
 /**
 *@title MainMenu
 *@description the methods to run once a menu option has been selected

@@ -10,5 +10,6 @@
 
 void thresholdSegmentation();
 void confidenceConnectedSegmentation();
+void connectedThresholdSegmentation();
 
 #endif /* SEGMENTATIONMETHODS_H_ */
