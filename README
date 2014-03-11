@@ -1,26 +1,21 @@
-#################################################################################################
-#	Author: Craig Parkinson								  	#
-#	Organisation: Bangor University							  	#
-#	Description: Visualisation of Medical Data using ITK, OpenGL for my dissertation	#
-#################################################################################################
+STUDENT ID	: 500235005
+NAME		: CRAIG PARKINSON
+PROJECT		: Segmentation of Medical Images
+Date		: 1st May 2013
 
 #################################################################################################
+This disk contains electronic copies of the thesis, videos and screenshots.
 
-Drop box is used to backup the project files
+The file structure of the disk is self explanatory, with the thesis being in the write up
+folder, demonstrations of the project are found in the videos folder.
 
-Git Repository is used as versioning control
+The program folder contains the source code, and Test data to be used in the project.
 
-CMake is used to manage the build process
+The program requires the ITK library, and MathGL libraries. ITK is to be built with version 3 compatibilty and MathGL is to be built with GLUT and OpenGL variables set to true.
 
-Eclipse is used to code the application using CDT
+The glut library is also required to run this project.
 
-GNU Auto tools chain is used to compile the application
-
-OpenGL is used to visualise the data
-
-ITK is used to read and create a volume from DICOM Images
+The project is built using CMake.
 
 #################################################################################################
-
-
 

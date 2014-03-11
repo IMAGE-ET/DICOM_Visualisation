@@ -1,0 +1,15 @@
+10:56:07 **** Build of configuration Debug for project hello ****
+make all 
+Building file: ../src/hello.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/hello.d" -MT"src/hello.d" -o "src/hello.o" "../src/hello.cpp"
+Finished building: ../src/hello.cpp
+ 
+Building target: hello
+Invoking: GCC C++ Linker
+g++  -o "hello"  ./src/hello.o   
+Finished building target: hello
+ 
+
+10:56:08 Build Finished (took 718ms)
+

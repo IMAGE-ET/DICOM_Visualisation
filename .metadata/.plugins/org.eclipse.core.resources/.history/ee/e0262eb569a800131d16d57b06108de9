@@ -1,0 +1,64 @@
+/*
+ * global.cxx
+ *
+ *  Created on: 10 Mar 2014
+ *      Author: craig
+ */
+
+GLuint displayListIndex;
+GLuint textureName;
+int left_click = GLUT_UP;
+int right_click = GLUT_UP;
+int xold = 0;
+int yold = 0;
+double xSpacing = 0.0;
+double ySpacing = 0.0;
+double zSpacing = 0.0;
+double *xArray(0);
+double *yArray(0);
+double planeEq0 [4] = {0,0,-1,0.8};
+double xSliceNumber = 0.0;
+double zSliceNumber = 0.0;
+double ySliceNumber = 0.0;
+double textureDepth = 0.0;
+int graphSize = 400;
+int sizeX = 0;
+int sizeY = 0;
+int sizeZ = 0;
+int width = 0;
+int height = 0;
+int wh = 0;
+int hw = 0;
+int z = 0;
+int noImages = 0;
+int xImages = 0;
+int yImages = 0;
+int window1 = 0;
+int window2 = 0;
+int arraySize = 0;
+int seedPoint = 0;
+int viewSegmented = 0;
+int viewVolume = 0;
+int viewCrossSection = 1;
+int nSeedPoints = 0;
+double highFreq = 0;
+double tempHighFreq = 0;
+signed int range = 0;
+float alpha = 0;
+float beta = 0;
+float imageDepth = 0.0;
+float newRange = 0.0;
+float oldRange = 0.0;
+float zSlice = 0.0;
+float ySlice = 0.0;
+float xSlice = 0.0;
+float seedX = 0.0;
+float seedY = 0.0;
+float volumeAlpha = 0.0;
+signed int maximum = 0;
+signed int minimum = 0;
+signed int tempMax = 0;
+signed int tempMin = 0;
+
+
+

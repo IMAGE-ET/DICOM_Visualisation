@@ -1,0 +1,79 @@
+/*
+ * global.h
+ *
+ *  Created on: 10 Mar 2014
+ *      Author: craig
+ */
+
+#ifndef GLOBAL_H_
+#define GLOBAL_H_
+
+#include <ITK-4.5/itkImage.h>
+
+extern GLuint displayListIndex;
+extern GLuint textureName;
+extern static int left_click = GLUT_UP;
+extern static int right_click = GLUT_UP;
+extern static int xold = 0;
+extern static int yold = 0;
+extern double xSpacing = 0.0;
+extern double ySpacing = 0.0;
+extern double zSpacing = 0.0;
+extern double *xArray(0);
+extern double *yArray(0);
+extern double planeEq0 [4] = {0,0,-1,0.8};
+extern double xSliceNumber = 0.0;
+extern double zSliceNumber = 0.0;
+extern double ySliceNumber = 0.0;
+extern double textureDepth = 0.0;
+extern int graphSize = 400;
+extern int sizeX = 0;
+extern int sizeY = 0;
+extern int sizeZ = 0;
+extern int width = 0;
+extern int height = 0;
+extern int wh = 0;
+extern int hw = 0;
+extern int z = 0;
+extern int noImages = 0;
+extern int xImages = 0;
+extern int yImages = 0;
+extern int window1 = 0;
+extern int window2 = 0;
+extern int arraySize = 0;
+extern int seedPoint = 0;
+extern int viewSegmented = 0;
+extern int viewVolume = 0;
+extern int viewCrossSection = 1;
+extern int nSeedPoints = 0;
+extern double highFreq = 0;
+extern double tempHighFreq = 0;
+extern signed int range = 0;
+extern static float alpha = 0;
+extern static float beta = 0;
+extern float imageDepth = 0.0;
+extern float newRange = 0.0;
+extern float oldRange = 0.0;
+extern float zSlice = 0.0;
+extern float ySlice = 0.0;
+extern float xSlice = 0.0;
+extern float seedX = 0.0;
+extern float seedY = 0.0;
+extern float volumeAlpha = 0.0;
+extern signed int maximum = 0;
+extern signed int minimum = 0;
+extern signed int tempMax = 0;
+extern signed int tempMin = 0;
+extern typedef signed short InputPixelType;
+extern typedef signed short volumePixelType;
+extern typedef unsigned char scaledPixelType;
+extern typedef unsigned char binaryPixelType;
+extern typedef itk::Image< InputPixelType, 3 > InputImageType;
+extern typedef itk::Image< volumePixelType, 3 > volumeImageType;
+extern typedef itk::Image< scaledPixelType, 3 > scaledVolumeType;
+extern typedef itk::Image< binaryPixelType, 3 > binaryVolumeType;
+extern binaryVolumeType::Pointer binaryVolume;
+extern scaledVolumeType::Pointer scaledVolume;
+extern volumeImageType::Pointer volumeImage;
+
+#endif /* GLOBAL_H_ */

@@ -1,0 +1,41 @@
+01:19:17 **** Auto Build of configuration Build (GNU) for project CTvisualisation ****
+make all 
+/usr/bin/cmake -H/home/craig/Documents/CT_Visualisation/program/CTvisualisation -B/home/craig/Documents/CT_Visualisation/program/CTvisualisation/build --check-build-system CMakeFiles/Makefile.cmake 0
+/usr/bin/cmake -E cmake_progress_start /home/craig/Documents/CT_Visualisation/program/CTvisualisation/build/CMakeFiles /home/craig/Documents/CT_Visualisation/program/CTvisualisation/build/CMakeFiles/progress.marks
+make -f CMakeFiles/Makefile2 all
+make[1]: Entering directory `/home/craig/Documents/CT_Visualisation/program/CTvisualisation/build'
+make -f CMakeFiles/CTvisualisation.dir/build.make CMakeFiles/CTvisualisation.dir/depend
+make[2]: Entering directory `/home/craig/Documents/CT_Visualisation/program/CTvisualisation/build'
+cd /home/craig/Documents/CT_Visualisation/program/CTvisualisation/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/craig/Documents/CT_Visualisation/program/CTvisualisation /home/craig/Documents/CT_Visualisation/program/CTvisualisation /home/craig/Documents/CT_Visualisation/program/CTvisualisation/build /home/craig/Documents/CT_Visualisation/program/CTvisualisation/build /home/craig/Documents/CT_Visualisation/program/CTvisualisation/build/CMakeFiles/CTvisualisation.dir/DependInfo.cmake --color=
+make[2]: Leaving directory `/home/craig/Documents/CT_Visualisation/program/CTvisualisation/build'
+make -f CMakeFiles/CTvisualisation.dir/build.make CMakeFiles/CTvisualisation.dir/build
+make[2]: Entering directory `/home/craig/Documents/CT_Visualisation/program/CTvisualisation/build'
+/usr/bin/cmake -E cmake_progress_report /home/craig/Documents/CT_Visualisation/program/CTvisualisation/build/CMakeFiles 5
+[ 16%] Building CXX object CMakeFiles/CTvisualisation.dir/menu.cxx.o
+/usr/bin/c++    -lmgl -lGLU -lGL -lglut -I/usr/local/include/ITK-4.5 -I/opt/AMDAPP/include    -o CMakeFiles/CTvisualisation.dir/menu.cxx.o -c /home/craig/Documents/CT_Visualisation/program/CTvisualisation/menu.cxx
+In file included from /home/craig/Documents/CT_Visualisation/program/CTvisualisation/global.h:12:0,
+                 from /home/craig/Documents/CT_Visualisation/program/CTvisualisation/menu.cxx:9:
+/opt/AMDAPP/include/GL/glut.h:67:0: warning: "APIENTRY" redefined [enabled by default]
+ #define APIENTRY
+ ^
+In file included from /opt/AMDAPP/include/GL/glut.h:62:0,
+                 from /home/craig/Documents/CT_Visualisation/program/CTvisualisation/global.h:12,
+                 from /home/craig/Documents/CT_Visualisation/program/CTvisualisation/menu.cxx:9:
+/usr/include/GL/gl.h:107:0: note: this is the location of the previous definition
+ #define APIENTRY GLAPIENTRY
+ ^
+/home/craig/Documents/CT_Visualisation/program/CTvisualisation/menu.cxx: In function ‘void mainMenu(int)’:
+/home/craig/Documents/CT_Visualisation/program/CTvisualisation/menu.cxx:27:35: error: ‘connectedThresholdSegmentation’ was not declared in this scope
+    connectedThresholdSegmentation();
+                                   ^
+/home/craig/Documents/CT_Visualisation/program/CTvisualisation/menu.cxx:33:22: error: ‘viewSegmentedData’ was not declared in this scope
+    viewSegmentedData();
+                      ^
+make[2]: *** [CMakeFiles/CTvisualisation.dir/menu.cxx.o] Error 1
+make[2]: Leaving directory `/home/craig/Documents/CT_Visualisation/program/CTvisualisation/build'
+make[1]: *** [CMakeFiles/CTvisualisation.dir/all] Error 2
+make: *** [all] Error 2
+make[1]: Leaving directory `/home/craig/Documents/CT_Visualisation/program/CTvisualisation/build'
+
+01:19:18 Build Finished (took 921ms)
+

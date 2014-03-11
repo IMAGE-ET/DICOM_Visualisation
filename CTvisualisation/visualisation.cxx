@@ -18,90 +18,282 @@
 #include	<GL/glut.h>
 #include 	<GL/glext.h>
 #include	<math.h>
-#include 	<itkImage.h>
+#include 	<ITK-4.5/itkImage.h>
 #include 	<iostream>
 #include	<stdio.h>
-#include 	<itkImageSeriesReader.h>
-#include 	<itkDICOMImageIO2.h>
-#include 	<itkDICOMSeriesFileNames.h>
-#include 	<itkExtractImageFilter.h>
-#include	<itkRescaleIntensityImageFilter.h>
+#include 	<ITK-4.5/itkImageSeriesReader.h>
+#include 	<ITK-4.5/itkGDCMImageIO.h>
+#include 	<ITK-4.5/itkGDCMSeriesFileNames.h>
+#include 	<ITK-4.5/itkExtractImageFilter.h>
+#include	<ITK-4.5/itkRescaleIntensityImageFilter.h>
+#include	<ITK-4.5/itkBinaryThresholdImageFilter.h>
+#include	<ITK-4.5/itkImageToHistogramFilter.h>
+#include	<ITK-4.5/itkStatisticsImageFilter.h>
+#include	<ITK-4.5/itkConnectedThresholdImageFilter.h>
+#include	<ITK-4.5/itkConfidenceConnectedImageFilter.h>
+#include 	<ITK-4.5/itkOrientImageFilter.h>
+#include	<mgl2/mgl.h>
 #include	"openGLStatus.h"
+#include	"histogramKeyboardFunc.h"
+#include	"histogramMouseFunc.h"
+#include	"menu.h"
+#include	"global.h"
 
-GLuint displayListIndex;
-GLuint textureName;
-static int	left_click = GLUT_UP;
-static int	right_click = GLUT_UP;
-static int	xold;
-static int	yold;
-double xSpacing;
-double ySpacing;
-double zSpacing;
-int view = 2;
-int sizeX;
-int sizeY;
-int sizeZ;
-int width;
-int height;
-int wh;
-int hw;
-int z = 0;
-int zSliceNumber;
-int noImages;
-int xSliceNumber;
-int xImages;
-int ySliceNumber;
-int yImages;
-static float alpha = 0;
-static float beta = 0;
-float imageDepth;
-float textureDepth;
-float newRange;
-float oldRange;
-float zSlice;
-float ySlice;
-float xSlice;
-typedef float InputPixelType;
-typedef float OutputPixelType;
-typedef short volumePixelType;
-typedef float scaledPixelType;
-typedef itk::Image< InputPixelType, 3 > InputImageType;
-typedef itk::Image< volumePixelType, 3 > volumeImageType;
-typedef itk::Image< scaledPixelType, 3 > scaledVolumeType;
-scaledVolumeType::Pointer scaledVolume;
 
 using namespace std;
+
+
+void renderCrossSection();
+void volumisedImage();
+void originalCT();
+void xPlane();
+void yPlane();
+void DrawHistogramFunc();
+void ReshapeHistogramFunc(int new_width, int new_height);
+void generateHistogram();
+void rescaleVolumeForDisplay();
+void mainMenu(int value);
+void generateVolumeTexture();
+void DisplayFunc();
+void ReshapeFunc(int new_width, int new_height);
+void KeyboardFunc(unsigned char key, int x, int y);
+void MouseFunc(int button, int state, int x, int y);
+void MotionFunc(int x, int y);
+void IdleFunc();
+void compileDisplayLists();
+void HistogramMouseFunc(int button, int state, int x, int y);
+int drawGraph(mglGraph *gr);
+
+
+/**
+ * @title main
+ * @description Initialise scene
+ */
+int	main(int argc, char **argv)
+{
+	//take in the file directory where the dicom series is stored as a command line argument
+	if(argc < 2)
+	{
+		cerr << "Usage: " << argv[0] << " DicomDirectory [seriesName] " << endl;
+		return EXIT_FAILURE;
+	}
+
+	//pointer to Image reader
+	itk::GDCMImageIO::Pointer dicomIO = itk::GDCMImageIO::New();
+
+	//Get the DICOM filenames from the directory
+	itk::GDCMSeriesFileNames::Pointer nameGenerator = itk::GDCMSeriesFileNames::New();
+	nameGenerator->SetDirectory(argv[1]);
+
+	try
+	{
+		//get the Dicom series by the series ID
+		typedef vector< string> seriesIdContainer;
+		const seriesIdContainer & seriesUID = nameGenerator->GetSeriesUIDs();
+
+		seriesIdContainer::const_iterator seriesItr = seriesUID.begin();
+		seriesIdContainer::const_iterator seriesEnd = seriesUID.end();
+
+		cout << endl << "The Directory: " << endl;
+		cout << endl << argv[1] << endl << endl;
+		cout << "Contains the following DICOM Series: ";
+		cout << endl << endl;
+
+		while( seriesItr != seriesEnd)
+		{
+			cout << seriesItr->c_str() << endl;
+			++seriesItr;
+		}
+
+		cout << endl << endl;
+		cout << "Now reading series: " << endl << endl;
+
+		typedef vector< string> fileNamesContainer;
+		fileNamesContainer fileNames;
+
+		if(argc < 4)
+		{
+			cout << seriesUID.begin()->c_str() << endl;
+			fileNames = nameGenerator->GetFileNames(seriesUID.begin()->c_str());
+		}
+		else
+		{
+			cout << argv[2] << endl;
+			fileNames = nameGenerator->GetFileNames(argv[2]);
+		}
+
+		cout << endl << endl;
+
+		//create a series reader
+		typedef itk::ImageSeriesReader< volumeImageType > ReaderType;
+		ReaderType::Pointer reader = ReaderType::New();
+		reader->SetFileNames(fileNames);
+		reader->SetImageIO(dicomIO);
+
+		try
+		{
+			reader->Update();
+		}
+		catch(itk::ExceptionObject &ex)
+		{
+			cout << ex << endl;
+			return EXIT_FAILURE;
+		}
+
+		//create a volume in memory from the series
+		volumeImage = reader->GetOutput();
+		volumeImage->Update();
+
+		itk::OrientImageFilter<volumeImageType,volumeImageType>::Pointer orienter = itk::OrientImageFilter<volumeImageType,volumeImageType>::New();
+		orienter->UseImageDirectionOn();
+		orienter->SetDesiredCoordinateOrientation(itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RIP);
+		orienter->SetInput(volumeImage);
+		orienter->Update();
+		volumeImage = orienter->GetOutput();
+
+
+		//Generate the histogram based on the Hounsfield units
+		generateHistogram();
+
+		//Rescaled the volume so that it can be viewed
+		rescaleVolumeForDisplay();
+
+		//start in the middle of the image
+		InputImageType::RegionType inputRegion = volumeImage->GetLargestPossibleRegion();
+		InputImageType::SizeType volumeSize = inputRegion.GetSize();
+
+		//always start the center of the volume
+		noImages = volumeSize[2];
+	    zSliceNumber = noImages/2;
+	    xImages = volumeSize[0];
+	    xSliceNumber = xImages/2;
+	    yImages = volumeSize[1];
+	    ySliceNumber = yImages/2;
+	}
+	catch(itk::ExceptionObject &ex)
+	{
+		cout << ex;
+		return EXIT_FAILURE;
+	}
+
+	/**
+	 * create window
+	 */
+	glutInit(&argc, argv);
+
+	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
+
+	width = glutGet(GLUT_SCREEN_WIDTH);
+	height = glutGet(GLUT_SCREEN_HEIGHT);
+
+	//create the window based on monitor size
+	if(width >= height)
+	{
+		glutInitWindowSize(height,height);
+		glutInitWindowPosition(width/2-(height/2),0);
+		width = height;
+	}
+	else if(height > width)
+	{
+		glutInitWindowSize(width,width);
+		glutInitWindowPosition(height/2-(width/2),0);
+		height = width;
+	}
+
+	glErrorCheck();
+
+	//call backs and window generation for the first window
+	glutCreateWindow("Visualisation");
+	glClearColor(0, 0, 0, 0);
+	glutCreateMenu(mainMenu); // single menu, no need for id
+	glutAddMenuEntry("Threshold Segmentation", 1);
+	glutAddMenuEntry("Connected Threshold Region Growing Segmentation", 2);
+	glutAddMenuEntry("Confidence Connected Segmentation", 3);
+	glutAddMenuEntry("View Segmented Data", 4);
+	glutAddMenuEntry("View Original Data", 5);
+	glutAddMenuEntry("View Volume", 6);
+	glutAddMenuEntry("View Cross Section", 7);
+	glutAddMenuEntry("Exit", 8);
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
+
+	glErrorCheck();
+
+	glEnable(GL_TEXTURE_3D);
+	glGenTextures(3,&textureName);
+
+	//generate a 3D texture from the volume in memory
+	generateVolumeTexture();
+
+	glDisable(GL_TEXTURE_3D);
+    /**
+	 * call backs
+	 */
+	glutDisplayFunc(&DisplayFunc);
+	glutReshapeFunc(&ReshapeFunc);
+	glutKeyboardFunc(&KeyboardFunc);
+	glutMouseFunc(&MouseFunc);
+	glutMotionFunc(&MotionFunc);
+	glutIdleFunc(&IdleFunc);
+
+	compileDisplayLists();
+	glErrorCheck();
+
+	//create a window for the separate display of the histogram
+	glutInitWindowSize(graphSize,graphSize);
+	glutInitWindowPosition(0,0);
+	glutCreateWindow("Histogram");
+	glutDisplayFunc(&DrawHistogramFunc);
+	glutReshapeFunc(&ReshapeHistogramFunc);
+	glutKeyboardFunc(&histogramKeyboardFunc);
+	glutMouseFunc(&HistogramMouseFunc);
+	glutIdleFunc(&IdleFunc);
+	glErrorCheck();
+
+	glutMainLoop();
+
+	return 0;
+}
 
 /**
  * @title renderCrossSection
  * @description render axial plane slice of the volume
  */
 void renderCrossSection()
-{	
+{	/**
 	//Transverse Plane
 	zSlice = (zSliceNumber+0.5)/noImages;
 
+	double temp = (double)(xImages*xSpacing)/(double)(noImages*zSpacing);
+	double scaledRange = (double)(1/temp);
+	double newScaledMin = (double)(1-(scaledRange))/2;
+	double newMax = (double)(1-newScaledMin);
+
+	zSlice = (((zSlice-0)*(newMax-newScaledMin))/(1-0))+ newScaledMin;**/
+
 	//calculate the correct depth of the image
-	oldRange = noImages * zSpacing;
-	newRange = 1.5;
-	textureDepth = ((((zSliceNumber*zSpacing) - 0) * newRange) / oldRange) + -0.75;
-		  
+	double oR = noImages * zSpacing;
+	double temp = (double)(xImages*xSpacing)/(double)(noImages*zSpacing);
+	double nR = 1.5/temp;
+	double max = nR/2;
+	textureDepth = ((((zSliceNumber*zSpacing) - 0) * nR) / oR) + -max;
+
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
-	glBindTexture (GL_TEXTURE_3D, textureName);
+	glEnable(GL_TEXTURE_3D);
+	glBindTexture (GL_TEXTURE_3D, textureName+2);
 
 	glBegin (GL_QUADS);
-	    glTexCoord3f(0.0,0.0,zSlice);
+		glTexCoord3f(1.0, 1.0,zSlice);
 	    glVertex3f(-0.75,textureDepth,-0.75);
 
-	    glTexCoord3f(1.0,0.0,zSlice);
+	    glTexCoord3f(0.0, 1.0,zSlice);
 	    glVertex3f(0.75,textureDepth,-0.75);
 
-	    glTexCoord3f(1.0, 1.0,zSlice);
+	    glTexCoord3f(0.0,0.0,zSlice);
 	    glVertex3f(0.75, textureDepth,0.75);
 
-	    glTexCoord3f(0.0, 1.0,zSlice);
+	    glTexCoord3f(1.0,0.0,zSlice);
 	    glVertex3f(-0.75, textureDepth,0.75);
 	glEnd ();
 
@@ -111,125 +303,228 @@ void renderCrossSection()
 	newRange = 1.5;
 	textureDepth = (((xSliceNumber - 0) * newRange) / oldRange) + -0.75;
 
-    glBindTexture (GL_TEXTURE_3D, textureName);
+    glBindTexture (GL_TEXTURE_3D, textureName+2);
 
     glBegin (GL_QUADS);
     	glTexCoord3f(xSlice,1.0,0.0);
-        glVertex3f(textureDepth,-0.75,-0.75);
+        glVertex3f(-textureDepth,-0.75,-0.75);
 
         glTexCoord3f(xSlice,0.0,0.0);
-        glVertex3f(textureDepth,-0.75,0.75);
+        glVertex3f(-textureDepth,-0.75,0.75);
 
         glTexCoord3f(xSlice, 0.0,1.0);
-        glVertex3f(textureDepth, 0.75,0.75);
+        glVertex3f(-textureDepth, 0.75,0.75);
 
         glTexCoord3f(xSlice, 1.0,1.0);
-        glVertex3f(textureDepth, 0.75,-0.75);
+        glVertex3f(-textureDepth, 0.75,-0.75);
    glEnd ();
-
-	//Coronal Plane
-   ySlice = (ySliceNumber+0.5)/yImages;
 	
 	oldRange = yImages;
 	newRange = 1.5;
 	textureDepth = (((ySliceNumber - 0) * newRange) / oldRange) + -0.75;
 
-   glBindTexture (GL_TEXTURE_3D, textureName);
+   glBindTexture (GL_TEXTURE_3D, textureName+2);
 
    glBegin (GL_QUADS);
    	   glTexCoord3f(0.0,ySlice,0.0);
-       glVertex3f(-0.75,-0.75,textureDepth);
+       glVertex3f(0.75,-0.75,-textureDepth);
 
        glTexCoord3f(1.0,ySlice,0.0);
-       glVertex3f(0.75,-0.75,textureDepth);
+       glVertex3f(-0.75,-0.75,-textureDepth);
 
        glTexCoord3f(1.0,ySlice,1.0);
-       glVertex3f(0.75, 0.75,textureDepth);
+       glVertex3f(-0.75, 0.75,-textureDepth);
 
        glTexCoord3f(0.0,ySlice, 1.0);
-       glVertex3f(-0.75, 0.75,textureDepth);
+       glVertex3f(0.75, 0.75,-textureDepth);
    glEnd ();
    glDisable(GL_BLEND);
-}
 
-/**
- * @title renderVolume
- * @description  draw the segments of the 3D texture according to its depth
- */
-void renderVolume()
-{
-  glColor4f(1,1,1,0.1);
-  glBindTexture (GL_TEXTURE_3D, textureName);
+   if(viewSegmented == 1)
+   {
 
-  //blend the textures together
-  glEnable(GL_BLEND);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	   	//calculate the correct depth of the image
+	   	double oR = noImages * zSpacing;
+	   	double nR = 1.5/temp;
+	   	double max = nR/2;
+	   	textureDepth = ((((zSliceNumber*zSpacing) - 0) * nR) / oR) + -max;
 
-	 glBegin(GL_QUADS);
-	  for(int i = (noImages-1); i >= 0; i--)
-	  {
-		  imageDepth = (i+0.5)/noImages;
-		  oldRange = noImages * zSpacing;
-		  newRange = 1.5;
-		  textureDepth = ((((i*zSpacing) - 0) * newRange) / oldRange) + -0.75;
-		  glTexCoord3f(0.0,0.0,imageDepth);
-		  glVertex3f(-0.5,-0.5,textureDepth);
+	   	glColor3f(0,1,0);
+	   	glEnable(GL_BLEND);
+	   	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-		  glTexCoord3f(1.0,0.0,imageDepth);
-		  glVertex3f(0.5,-0.5,textureDepth);
+	   	glBindTexture (GL_TEXTURE_3D, textureName+1);
 
-		  glTexCoord3f(1.0, 1.0,imageDepth);
-		  glVertex3f(0.5, 0.5,textureDepth);
+	   	glBegin (GL_QUADS);
+	   		glTexCoord3f(1.0, 1.0,zSlice);
+	   	    glVertex3f(-0.75,textureDepth,-0.75);
 
-		  glTexCoord3f(0.0, 1.0,imageDepth);
-		  glVertex3f(-0.5, 0.5,textureDepth);
-	  }
-	 glEnd();
-	glDisable(GL_BLEND);
+	   	    glTexCoord3f(0.0, 1.0,zSlice);
+	   	    glVertex3f(0.75,textureDepth,-0.75);
+
+	   	    glTexCoord3f(0.0,0.0,zSlice);
+	   	    glVertex3f(0.75, textureDepth,0.75);
+
+	   	    glTexCoord3f(1.0,0.0,zSlice);
+	   	    glVertex3f(-0.75, textureDepth,0.75);
+	   	glEnd ();
+
+	   	//Sagital Plane
+	   	xSlice = (xSliceNumber+0.5)/xImages;
+	   	oldRange = xImages;
+	   	newRange = 1.5;
+	   	textureDepth = (((xSliceNumber - 0) * newRange) / oldRange) + -0.75;
+
+	       glBindTexture (GL_TEXTURE_3D, textureName+1);
+
+	       glBegin (GL_QUADS);
+	       	glTexCoord3f(xSlice,1.0,0.0);
+	           glVertex3f(-textureDepth,-0.75,-0.75);
+
+	           glTexCoord3f(xSlice,0.0,0.0);
+	           glVertex3f(-textureDepth,-0.75,0.75);
+
+	           glTexCoord3f(xSlice, 0.0,1.0);
+	           glVertex3f(-textureDepth, 0.75,0.75);
+
+	           glTexCoord3f(xSlice, 1.0,1.0);
+	           glVertex3f(-textureDepth, 0.75,-0.75);
+	      glEnd ();
+
+	   	//Coronal Plane
+	      ySlice = (ySliceNumber+0.5)/yImages;
+
+	   	oldRange = yImages;
+	   	newRange = 1.5;
+	   	textureDepth = (((ySliceNumber - 0) * newRange) / oldRange) + -0.75;
+
+	      glBindTexture (GL_TEXTURE_3D, textureName+1);
+
+	      glBegin (GL_QUADS);
+	      	   glTexCoord3f(0.0,ySlice,0.0);
+	          glVertex3f(0.75,-0.75,-textureDepth);
+
+	          glTexCoord3f(1.0,ySlice,0.0);
+	          glVertex3f(-0.75,-0.75,-textureDepth);
+
+	          glTexCoord3f(1.0,ySlice,1.0);
+	          glVertex3f(-0.75, 0.75,-textureDepth);
+
+	          glTexCoord3f(0.0,ySlice, 1.0);
+	          glVertex3f(0.75, 0.75,-textureDepth);
+	      glEnd ();
+	      glDisable(GL_BLEND);
+       	 glColor3f(1,1,1);
+       }
+   glDisable(GL_TEXTURE_3D);
 }
 
 /**
  * @title cross Section
  * @description wire frame of a teapot
  */
-void VolumisedImage(void)
+void volumisedImage()
 {
-  glRotatef(beta, 1, 0, 0);
-  glRotatef(alpha, 0, 1, 0);
-
-  //switch between the views according to the view value
-  switch (view)
+  if(viewVolume == 1)
   {
-  	  case 1:
-  		  glErrorCheck();
-  		  renderCrossSection();
-  		  break;
-  	  case 2:
-  		  glErrorCheck();
-  		  renderVolume();
-  		  break;
-  	  default:
-  		  glErrorCheck();
-  		  renderVolume();
-  		  break;
+	  glMatrixMode(GL_TEXTURE);
+	  glLoadIdentity();
+	  glTranslatef(0.5,0.5,0.5);
+
+	  glScaled((float)(xImages*xSpacing)/(float)(xImages*xSpacing), -1.0f*(float)(xImages*xSpacing)/(float)(yImages*ySpacing),(float)(xImages*xSpacing)/(float)(noImages*zSpacing));
+
+	  glRotatef(-beta, 1, 0, 0);
+	  glRotatef(alpha, 0, 1, 0);
+
+	  glTranslatef(-0.5,-0.5,-0.5);
+  }
+  else
+  {
+	  glLoadIdentity();
+	  glRotatef(beta, 1, 0, 0);
+	  glRotatef(alpha, 0, 1, 0);
   }
 
-  //wireframe mode
-  glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
-  
-  glCallList(displayListIndex+1);
+  if(viewVolume == 1)
+  {
+	//enable the clipping plane and set the plane equation
+	glClipPlane(GL_CLIP_PLANE0,planeEq0);
+	glEnable(GL_CLIP_PLANE0);
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GREATER,volumeAlpha);
+	glEnable(GL_TEXTURE_3D);
+	glEnable(GL_BLEND);
+  	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-  //fill polygons
-  glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
+  	if(viewSegmented == 1)
+  	{
+  		glBindTexture (GL_TEXTURE_3D, textureName+1);
+  	}
+  	else
+  	{
+  		glBindTexture(GL_TEXTURE_3D, textureName+2);
+  	}
+   	//calculate the correct depth of the image
+   	oldRange = noImages * zSpacing;
+   	newRange = 1.5;
+
+	for(int i = 0; i < noImages; i++)
+	{
+		textureDepth = ((((i*zSpacing) - 0) * newRange) / oldRange) + -0.75;
+		imageDepth = (i+0.5)/noImages;
+		glBegin (GL_QUADS);
+			glTexCoord3f(0,0.0,imageDepth);
+			glVertex3f(-1.2,-1.2,textureDepth);
+
+			glTexCoord3f(1.0,0.0,imageDepth);
+			glVertex3f(1.2,-1.2,textureDepth);
+
+			glTexCoord3f(1.0, 1.0,imageDepth);
+			glVertex3f(1.2, 1.2,textureDepth);
+
+			glTexCoord3f(0.0, 1.0,imageDepth);
+			glVertex3f(-1.2, 1.2,textureDepth);
+		glEnd();
+	}
+	glDisable(GL_ALPHA_TEST);
+    glDisable(GL_BLEND);
+  	glDisable(GL_TEXTURE_3D);
+  	glDisable(GL_CLIP_PLANE0);
+  }
+  else if (viewCrossSection == 1)
+  {
+	  renderCrossSection();
+  }
+
+  if(viewVolume == 0)
+  {
+	  //wire frame mode
+	  glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+  
+	  glCallList(displayListIndex+1);
+
+	  //fill polygons
+	  glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
+  }
 }
 
 /**
  * @title originalCT
  * @description display the original CT scan
  */
-void originalCT(void)
+void originalCT()
 {
 	zSlice = (zSliceNumber+0.5)/noImages;
+
+	double temp = (xImages*xSpacing)/(noImages*zSpacing);
+	double scaledRange = 1/temp;
+	double newScaledMin = (1-(scaledRange))/2;
+	double newMax = 1-newScaledMin;
+
+	zSlice = (((zSlice-0)*(newMax-newScaledMin))/(1-0))+ newScaledMin;
+
+
+	glEnable(GL_TEXTURE_3D);
 	glBindTexture (GL_TEXTURE_3D, textureName);
 
     glBegin (GL_QUADS);
@@ -245,15 +540,40 @@ void originalCT(void)
     	  glTexCoord3f(0.0, 1.0,zSlice);
     	  glVertex3f(-0.9, 0.9,0);
     glEnd ();
+
+    if(viewSegmented == 1)
+    {
+    	glEnable(GL_BLEND);
+    	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    	glColor3f(0,1,0);
+    	glBindTexture (GL_TEXTURE_3D, textureName+1);
+    	    glBegin (GL_QUADS);
+    	    	  glTexCoord3f(0.0,0.0,zSlice);
+    	    	  glVertex3f(-0.9,-0.9,0);
+
+    	    	  glTexCoord3f(1.0,0.0,zSlice);
+    	    	  glVertex3f(0.9,-0.9,0);
+
+    	    	  glTexCoord3f(1.0, 1.0,zSlice);
+    	    	  glVertex3f(0.9, 0.9,0);
+
+    	    	  glTexCoord3f(0.0, 1.0,zSlice);
+    	    	  glVertex3f(-0.9, 0.9,0);
+    	    glEnd ();
+    	 glDisable(GL_BLEND);
+    	 glColor3f(1,1,1);
+    }
+    glDisable(GL_TEXTURE_3D);
 }
 
 /**
  * @title xPlane
  * @description display an iterpolated image of the x-plane of the volumised ct series
  */
-void xPlane(void)
+void xPlane()
 {
 	xSlice = (xSliceNumber+0.5)/xImages;
+	glEnable(GL_TEXTURE_3D);
     glBindTexture (GL_TEXTURE_3D, textureName);
 
     glBegin (GL_QUADS);
@@ -269,15 +589,50 @@ void xPlane(void)
     	  glTexCoord3f(xSlice, 1.0,1.0);
     	  glVertex3f(-0.9, 0.9,0);
     glEnd ();
+
+    if(viewSegmented == 1)
+    {
+    	glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glColor3f(0,1,0);
+        glBindTexture (GL_TEXTURE_3D, textureName+1);
+
+        glBegin (GL_QUADS);
+        	glTexCoord3f(xSlice,1.0,0.0);
+            glVertex3f(-0.9,-0.9,0);
+
+            glTexCoord3f(xSlice,0.0,0.0);
+            glVertex3f(0.9,-0.9,0);
+
+            glTexCoord3f(xSlice, 0.0,1.0);
+            glVertex3f(0.9, 0.9,0);
+
+            glTexCoord3f(xSlice, 1.0,1.0);
+            glVertex3f(-0.9, 0.9,0);
+        glEnd ();
+        glDisable(GL_BLEND);
+        glColor3f(1,1,1);
+      }
+    glDisable(GL_TEXTURE_3D);
 }
 
 /**
  * @title xPlane
  * @description display an iterpolated image of the y-plane of the volumised ct series
  */
-void yPlane(void)
+void yPlane()
 {
 	ySlice = (ySliceNumber+0.5)/yImages;
+
+	//calculate the positioning
+	double temp =  (double)(xImages*xSpacing)/(double)(yImages*ySpacing);
+	double scaledRange = (double)(1/temp);
+	double newScaledMin = (double)(1-(scaledRange))/2;
+	double newMax = (double)(1-newScaledMin);
+
+	ySlice = (((ySlice-0)*(newMax-newScaledMin))/(1-0))+ newScaledMin;
+
+	glEnable(GL_TEXTURE_3D);
     glBindTexture (GL_TEXTURE_3D, textureName);
 
     glBegin (GL_QUADS);
@@ -292,43 +647,199 @@ void yPlane(void)
 
     	  glTexCoord3f(0.0,ySlice, 1.0);
     	  glVertex3f(-0.9, 0.9,0);
-    glEnd ();
+    glEnd();
+
+    if(viewSegmented == 1)
+    {
+       	glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glColor3f(0,1,0);
+        glBindTexture (GL_TEXTURE_3D, textureName+1);
+
+        glBegin (GL_QUADS);
+       	  glTexCoord3f(0.0,ySlice,0.0);
+       	  glVertex3f(-0.9,-0.9,0);
+
+       	  glTexCoord3f(1.0,ySlice,0.0);
+       	  glVertex3f(0.9,-0.9,0);
+
+       	  glTexCoord3f(1.0,ySlice,1.0);
+       	  glVertex3f(0.9, 0.9,0);
+
+       	  glTexCoord3f(0.0,ySlice, 1.0);
+       	  glVertex3f(-0.9, 0.9,0);
+        glEnd();
+        glDisable(GL_BLEND);
+        glColor3f(1,1,1);
+    }
+    glDisable(GL_TEXTURE_3D);
+}
+
+/**
+ * @Title drawGraph
+ * @description draw the plots of the graph
+ */
+int drawGraph(mglGraph *gr)
+{
+	//create the graph, draw the title
+	gr->Title("Histogram");
+	gr->SetRanges(minimum,maximum,0,highFreq-1);
+	gr->SetOrigin(minimum,0,0);  // first axis
+	gr->SetTuneTicks(0);
+	gr->Axis();
+	//gr->Label('y',"Frequency",-1);
+	gr->Label('x',"Value",0);
+
+	//convert the histogram arrays to mglData arrays
+	mglData x;
+	x.Set(xArray,range);
+	mglData y;
+	y.Set(yArray,range);
+	//plot the values
+	gr->Plot(x,y,"b");
+	return 0;
+}
+
+/**
+ * @Title DrawHistogram
+ * @description draw the histogram of the data
+ */
+void DrawHistogramFunc()
+{
+	glErrorCheck();
+	glClear(GL_COLOR_BUFFER_BIT);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0,graphSize, 0,graphSize,0, 1);
+
+	//generate mglGraph object
+	mglGraph gr;
+	gr.SetSize(graphSize,graphSize);
+	gr.Alpha(true);
+	gr.Light(true);
+	drawGraph(&gr);
+
+	long w=gr.GetWidth(), h=gr.GetHeight();
+
+	//pointer to an array which stores the graph
+	char *buf = new char[4*w*h];
+	gr.GetRGB(buf,4*w*h);
+
+	//flip y axis, for correct drawing
+	glPixelZoom(1, -1);
+	glRasterPos3f(0,graphSize-1,-0.3);
+	glDrawPixels(w,h,GL_RGB,GL_UNSIGNED_BYTE,buf);
+	glutSwapBuffers();
+}
+
+/**
+ * @title ReshapeFunc
+ * @description called when reshaped or resized
+ */
+void ReshapeHistogramFunc(int new_width, int new_height)
+{
+	int hWidth = new_width;
+	int hHeight = new_height;
+
+	//avoid divide by zero
+	if(hWidth == 0)
+	{
+		hWidth = 1;
+	}
+	else if(hHeight == 0)
+	{
+		hHeight = 1;
+	}
+
+	//aspect ratios
+	float heightWidth = hHeight/(float) width;
+	float widthHeight = hWidth/(float) height;
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+
+	glMatrixMode(GL_MODELVIEW);
+	glViewport (0, 0, (GLsizei)(hWidth), (GLsizei)(hHeight));
 }
 
 /**
  * @Title DisplayFunc
  * @description update rendering
  */
-void DisplayFunc(void)
+void DisplayFunc()
 {
+	glErrorCheck();
+
 	glClear(GL_COLOR_BUFFER_BIT);
-
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glViewport(0,0,width,height);
-	glOrtho(-1.2, 1.2, -1.2, 1.2, -1.2, 1.2);
-
-	glCallList(displayListIndex);
 
 	/**
 	 * bottom right
 	 */
 	glErrorCheck();
 
+	if(viewVolume == 1)
+	{
+		glViewport(0,0,width,height);
+		glErrorCheck();
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		glErrorCheck();
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glErrorCheck();
+		glOrtho(-1.2, 1.2, -1.2, 1.2, -1.2, 1.2);
+		glErrorCheck();
+
+		volumisedImage();
+
+	}
+	else
+	{
+		glMatrixMode(GL_TEXTURE);
+			glLoadIdentity();
+			glTranslatef(0.5,0.5,0.5);
+			glScaled((float)(xImages*xSpacing)/(float)(xImages*xSpacing), -1.0f*(float)(xImages*xSpacing)/(float)(yImages*ySpacing),(float)(xImages*xSpacing)/(float)(noImages*zSpacing));
+			glTranslatef(-0.5,-0.5,-0.5);
+			glMatrixMode(GL_MODELVIEW);
+			glLoadIdentity();
+			glMatrixMode(GL_PROJECTION);
+			glLoadIdentity();
+
+			glErrorCheck();
+
+
+			glViewport(0,0,width,height);
+			glErrorCheck();
+
+			glOrtho(-1.2, 1.2, -1.2, 1.2, -1.2, 1.2);
+
+			glErrorCheck();
+			glColor3f(1,0,0);
+			glCallList(displayListIndex);
+			glColor3f(1,1,1);
 	glViewport((width/2)+0.5, 0, (width/2)-0.5, (height/2)-0.5);
+	glErrorCheck();
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+	glErrorCheck();
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glErrorCheck();
+	glOrtho(-1.2, 1.2, -1.2, 1.2, -1.2, 1.2);
+	glErrorCheck();
+
+	volumisedImage();
+
+	//scale the texture
+	glMatrixMode(GL_TEXTURE);
+	glLoadIdentity();
+	glTranslatef(0.5,0.5,0.5);
+	glScaled((float)(xImages*xSpacing)/(float)(xImages*xSpacing), -1.0f*(float)(xImages*xSpacing)/(float)(yImages*ySpacing),(float)(xImages*xSpacing)/(float)(noImages*zSpacing));
+	glTranslatef(-0.5,-0.5,-0.5);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(-1.2, 1.2, -1.2, 1.2, -1.2, 1.2);
 
-	VolumisedImage();
-
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho(-1.2, 1.2, -1.2, 1.2, -1.2, 1.2);
 	glMatrixMode(GL_MODELVIEW);
 	glErrorCheck();
 
@@ -338,6 +849,18 @@ void DisplayFunc(void)
 	glViewport(0, (height/2)+0.5, (width/2)-0.5, (height/2)-0.5);
 	glPushMatrix();
 	originalCT();
+	glPopMatrix();
+	glPushMatrix();
+	//display the seed point
+	if(seedPoint == 1)
+	{
+		glPointSize(5.0f);
+		glBegin(GL_POINTS);
+			glColor3f(1,0,0);
+			glVertex2f(seedX,seedY);
+			glColor3f(1,1,1);
+		glEnd();
+	}
 	glPopMatrix();
 	glErrorCheck();
 
@@ -358,7 +881,7 @@ void DisplayFunc(void)
 	yPlane();
 	glPopMatrix();
 	glErrorCheck();
-
+	}
 	glutSwapBuffers();
 }
 
@@ -415,13 +938,61 @@ void KeyboardFunc(unsigned char key, int x, int y)
 
 	if ('q' == key || 'Q' == key || 27 == key)
 	{
-      exit(0);
+		exit(0);
+	}
+
+	if('a' == key || 'A' == key)
+	{
+		if(volumeAlpha > 0.0)
+		{
+			volumeAlpha -= 0.01;
+
+		}
+		else
+		{
+			volumeAlpha = 0.0;
+		}
+	}
+
+	if('s' == key || 'S' == key)
+	{
+		if(volumeAlpha < 1.0)
+		{
+			volumeAlpha += 0.01;
+		}
+		else
+		{
+			volumeAlpha = 1.0;
+		}
+	}
+
+	//translate the cutting plane throught the volume by using aX + bY + cZ + d = 0;
+	if('x' == key || 'X' == key)
+	{
+		if(planeEq0[3] >= 0.8)
+		{
+		}
+		else
+		{
+			planeEq0[3] += 0.01;
+		}
+	}
+
+	if('z' == key || 'Z' == key)
+	{
+		if(planeEq0[3] <= -0.8)
+		{
+		}
+		else
+		{
+			planeEq0[3] -= 0.01;
+		}
 	}
 
 	//set the depth of the top left image to be displayed
 	if ('+' == key)
 	{
-		if(ySliceNumber != noImages )
+		if(zSliceNumber != noImages)
 		{
 			zSliceNumber += 1;
 		}
@@ -439,7 +1010,7 @@ void KeyboardFunc(unsigned char key, int x, int y)
 		}
 		else
 		{
-				zSliceNumber = 0;
+			zSliceNumber = 0;
 		}
 	}
 
@@ -503,6 +1074,37 @@ void MouseFunc(int button, int state, int x, int y)
 	if(GLUT_LEFT_BUTTON == button)
 	{
 		left_click = state;
+		if(left_click == GLUT_DOWN)
+		{
+			//disable seed point
+			seedPoint = 0;
+
+			//double check the user has clicked in the top left view port
+			if((x <= ((width/2)+0.5)) && (y <= ((height/2)-0.5)))
+			{
+				//convert window coordinates to orthogonal coordinates
+				float oR = ((width/2)+0.5)-0;
+				float nR = 1.2-(-1.2);
+				float nX = (((x-0)*nR)/oR)+(-1.2);
+
+				oR = ((height/2)-0.5)-0;
+				float nY = (((y-0)*nR)/oR)+(-1.2);
+
+				//check the user has clicked on the texture
+				if((nX >= -0.9) && (nX <= 0.9) && (nY >= -0.9) && (nY <= 0.9))
+				{
+					//set the orthogonal coordinates to seedX and seedY
+					//they are used in the display function to show the seedpoint
+					seedX = nX;
+					seedY = -nY;
+					seedPoint = 1;
+				}
+			}
+			else
+			{
+				seedPoint = 0;
+			}
+		}
 	}
 
 	if(GLUT_RIGHT_BUTTON == button)
@@ -520,21 +1122,21 @@ void MouseFunc(int button, int state, int x, int y)
  */
 void MotionFunc(int x, int y)
 {
-	if(GLUT_DOWN == left_click)
+	//calculate the rotation angle
+	if((GLUT_DOWN == left_click) && (x > ((width/2)+0.5)) && (y > ((height/2)-0.5)))
     {
 		beta = beta - (y - yold) / 2.f;
 		alpha = alpha - (x - xold) / 2.f;
 
 		glutPostRedisplay();
     }
-
 	xold = x;
 	yold = y;
 }
 
 /**
  * @title compileDisplayLists
- * @description compile the window seperation and wireframe cube
+ * @description compile the window separation and wire frame cube
  */
 void compileDisplayLists()
 {
@@ -581,161 +1183,77 @@ void compileDisplayLists()
 	glEndList();
 }
 
-void mainMenu(int value)
+/**
+ * @title connectedThresholdSegmentation
+ * @description segment the volume based on a seed value
+ */
+void connectedThresholdSegmentation()
 {
-	if(value == 1)
-	{
-		view = 1;
-	}
-	else if(value == 2)
-	{
-		view = 2;
-	}
-	else if(value == 3)
-	{
-		exit(0);
-	}
+	typedef itk::ConnectedThresholdImageFilter< volumeImageType,binaryVolumeType > ConnectedFilterType;
+	ConnectedFilterType::Pointer connectedThreshold = ConnectedFilterType::New();
+	connectedThreshold->SetInput(volumeImage);
+
+	cout << "Please enter the lower threshold value followed by a <return> or <enter>: ";
+    float lowerThreshold = tempMin;
+
+	while ( !(cin >> lowerThreshold) || (lowerThreshold < tempMin))
+    {
+       	// Enter this loop if input fails because of invalid data.
+
+		cout << "Incorrect value, please try again: ";
+        cin.clear ();   // reset the "failure" flag
+
+        // The input "cursor" is still positioned at the beginning of
+        // the invalid input, so we need to skip past it.
+       	cin.ignore (1000, '\n');
+   	}
+
+	cout << "Please enter the Upper threshold value followed by a <return> or <enter>: ";
+    float upperThreshold = tempMax;
+
+	while ( ! (cin >> upperThreshold) || (upperThreshold < lowerThreshold) || (upperThreshold > tempMax))
+    {
+       	// Enter this loop if input fails because of invalid data.
+
+       	cout << "Incorrect value, please try again: ";
+       	cin.clear ();   // reset the "failure" flag
+
+       	// The input "cursor" is still positioned at the beginning of
+       	// the invalid input, so we need to skip past it.
+
+       	cin.ignore (1000, '\n');
+    }
+
+	connectedThreshold->SetLower(lowerThreshold);
+	connectedThreshold->SetUpper(upperThreshold);
+	connectedThreshold->SetReplaceValue(175);
+
+	float oR = 1.8;
+	float yNr = yImages;
+	float xNr = xImages;
+
+	//take the texture coordinates and convert them to volume coordinates
+	int nX = (((seedX-(-0.9))*xNr)/oR)+0;
+	int nY = (((-seedY-(-0.9))*yNr)/oR)+0;
+
+	volumeImageType::IndexType index;
+	index[0] = nX;
+	index[1] = nY;
+	index[2] = zSliceNumber;
+
+	connectedThreshold->SetSeed(index);
+	connectedThreshold->Update();
+	binaryVolume = connectedThreshold->GetOutput();
 }
 
 /**
- * @title main
- * @description Initialise scene
+ * @title generateVolumeTexture
+ * @description create a 3D texture of the DICOM volume
  */
-int	main(int argc, char **argv)
+void generateVolumeTexture()
 {
-	if(argc < 2)
-	{
-		cerr << "Usage: " << argv[0] << " DicomDirectory [seriesName] " << endl;
-		return EXIT_FAILURE;
-	}
-
-	itk::DICOMImageIO2::Pointer dicomIO = itk::DICOMImageIO2::New();
-
-	//Get the DICOM filenames from the directory
-	itk::DICOMSeriesFileNames::Pointer nameGenerator = itk::DICOMSeriesFileNames::New();
-	nameGenerator->SetDirectory(argv[1]);
-
-	try
-	{
-		typedef vector< string> seriesIdContainer;
-		const seriesIdContainer & seriesUID = nameGenerator->GetSeriesUIDs();
-
-		seriesIdContainer::const_iterator seriesItr = seriesUID.begin();
-		seriesIdContainer::const_iterator seriesEnd = seriesUID.end();
-
-		cout << endl << "The Directory: " << endl;
-		cout << endl << argv[1] << endl << endl;
-		cout << "Contains the following DICOM Series: ";
-		cout << endl << endl;
-
-		while( seriesItr != seriesEnd)
-		{
-			cout << seriesItr->c_str() << endl;
-			++seriesItr;
-		}
-
-		cout << endl << endl;
-		cout << "Now reading series: " << endl << endl;
-
-		typedef vector< string> fileNamesContainer;
-		fileNamesContainer fileNames;
-
-		if(argc < 4)
-		{
-			cout << seriesUID.begin()->c_str() << endl;
-			fileNames = nameGenerator->GetFileNames();
-		}
-		else
-		{
-			cout << argv[2] << endl;
-			fileNames = nameGenerator->GetFileNames(argv[2]);
-		}
-
-		cout << endl << endl;
-
-		typedef itk::ImageSeriesReader< volumeImageType > ReaderType;
-		volumeImageType::Pointer volumeImage = volumeImageType::New();
-		ReaderType::Pointer reader = ReaderType::New();
-		reader->SetFileNames(fileNames);
-		reader->SetImageIO(dicomIO);
-
-		try
-		{
-			reader->Update();
-		}
-		catch(itk::ExceptionObject &ex)
-		{
-			cout << ex << endl;
-			return EXIT_FAILURE;
-		}
-
-		//store the volumised image
-		volumeImage = reader->GetOutput();
-		volumeImage->Update();
-
-		typedef itk::RescaleIntensityImageFilter< volumeImageType, scaledVolumeType > RescaleFilterType;
-		RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
-		rescaleFilter->SetInput(volumeImage);
-		rescaleFilter->SetOutputMinimum(0.0);
-		rescaleFilter->SetOutputMaximum(1.0);
-		rescaleFilter->Update();
-		scaledVolume = rescaleFilter->GetOutput();
-		scaledVolume->Update();
-
-		InputImageType::RegionType inputRegion = volumeImage->GetLargestPossibleRegion();
-		InputImageType::SizeType volumeSize = inputRegion.GetSize();
-	    noImages = volumeSize[2];
-	    noImages--;
-	    zSliceNumber = noImages/2;
-	    xImages = volumeSize[0];
-	    xImages--;
-	    xSliceNumber = xImages/2;
-	    yImages = volumeSize[1];
-	    yImages--;
-	    ySliceNumber = yImages/2;
-	}
-	catch(itk::ExceptionObject &ex)
-	{
-		cout << ex;
-		return EXIT_FAILURE;
-	}
-
-	/**
-	 * create window
-	 */
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
-
-	width = glutGet(GLUT_SCREEN_WIDTH);
-	height = glutGet(GLUT_SCREEN_HEIGHT);
-
-	if(width >= height)
-	{
-		glutInitWindowSize(height,height);
-		glutInitWindowPosition(width/2-(height/2),0);
-		width = height;
-	}
-	else if(height > width)
-	{
-		glutInitWindowSize(width,width);
-		glutInitWindowPosition(height/2-(width/2),0);
-		height = width;
-	}
-
-	glutCreateWindow("Visualisation");
-	glClearColor(0.3, 0.3, 0.3, 0.3);
-	glutCreateMenu(mainMenu); // single menu, no need for id
-	glutAddMenuEntry("Cross Sectional View", 1);
-	glutAddMenuEntry("Volume View", 2);
-	glutAddMenuEntry("Exit", 3);
-	glutAttachMenu(GLUT_RIGHT_BUTTON);
-
-	compileDisplayLists();
-
-	glEnable(GL_TEXTURE_3D);
-	glGenTextures(1,&textureName);
-
-	OutputPixelType *volumePointer = scaledVolume->GetBufferPointer();
+	//create a 3D texture from the display volume
+	scaledPixelType *volumePointer = scaledVolume->GetBufferPointer();
 	signed short lWidth = scaledVolume->GetBufferedRegion().GetSize()[0];
 	signed short lHeight = scaledVolume->GetBufferedRegion().GetSize()[1];
 	signed short lDepth = scaledVolume->GetBufferedRegion().GetSize()[2];
@@ -748,7 +1266,8 @@ int	main(int argc, char **argv)
 	ySpacing = spacing[1];
 	zSpacing = spacing[2];
 
-	glTexImage3D(GL_PROXY_TEXTURE_3D, 0, GL_LUMINANCE, lWidth, lHeight, lDepth, 0, GL_LUMINANCE,GL_FLOAT, NULL);
+	//use a proxy texture to check the texture can be generated
+	glTexImage3D(GL_PROXY_TEXTURE_3D, 0, GL_LUMINANCE, lWidth, lHeight, lDepth, 0, GL_LUMINANCE,GL_UNSIGNED_BYTE, NULL);
 
 	GLint textureWidth;
 	GLint textureDepth;
@@ -763,26 +1282,152 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
+		glErrorCheck();
+		glPixelStorei(GL_UNPACK_ALIGNMENT,1);
 		glBindTexture(GL_TEXTURE_3D,textureName);
-		glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri (GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_3D,GL_TEXTURE_WRAP_R,GL_CLAMP);
+		glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+		glTexParameteri (GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+		glTexParameteri(GL_TEXTURE_3D,GL_TEXTURE_WRAP_R,GL_CLAMP_TO_BORDER);
 		glTexParameteri (GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri (GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-		glTexImage3D(GL_TEXTURE_3D, 0, GL_LUMINANCE, lWidth, lHeight, lDepth, 0, GL_LUMINANCE,GL_FLOAT, volumePointer);
+
+		glErrorCheck();
+		glTexImage3D(GL_TEXTURE_3D,0, GL_LUMINANCE, lWidth, lHeight, lDepth,0,GL_LUMINANCE,GL_UNSIGNED_BYTE, volumePointer);
+
+		glBindTexture(GL_TEXTURE_3D,textureName+2);
+		glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+		glTexParameteri (GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+		glTexParameteri(GL_TEXTURE_3D,GL_TEXTURE_WRAP_R,GL_CLAMP_TO_BORDER);
+		glTexParameteri (GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri (GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+		glErrorCheck();
+		glTexImage3D(GL_TEXTURE_3D,0, GL_INTENSITY, lWidth, lHeight, lDepth,0,GL_LUMINANCE,GL_UNSIGNED_BYTE, volumePointer);
+	}
+}
+
+/**
+ * @title viewSegmentedData
+ * @description set the 3D texture to binary data
+ */
+
+void viewSegmentedData()
+{
+	//generate a 3d texture from the binary volume
+	binaryPixelType *binaryVolumePointer = binaryVolume->GetBufferPointer();
+	signed short lWidth = binaryVolume->GetBufferedRegion().GetSize()[0];
+	signed short lHeight = binaryVolume->GetBufferedRegion().GetSize()[1];
+	signed short lDepth = binaryVolume->GetBufferedRegion().GetSize()[2];
+
+	glTexImage3D(GL_PROXY_TEXTURE_3D, 0, GL_LUMINANCE, lWidth, lHeight, lDepth, 0, GL_LUMINANCE,GL_UNSIGNED_BYTE, NULL);
+
+	GLint textureWidth;
+	GLint textureDepth;
+	glGetTexLevelParameteriv(GL_PROXY_TEXTURE_3D, 0, GL_TEXTURE_WIDTH, &textureWidth);
+	glGetTexLevelParameteriv(GL_PROXY_TEXTURE_3D, 0, GL_TEXTURE_DEPTH, &textureDepth);
+
+
+	if(textureWidth == 0 || textureDepth == 0)
+	{
+		cout << "Segmented Data can't be generated" << endl;
+	}
+	else
+	{
+		glBindTexture(GL_TEXTURE_3D,textureName+1);
+		glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+		glTexParameteri (GL_TEXTURE_3D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+		glTexParameteri(GL_TEXTURE_3D,GL_TEXTURE_WRAP_R,GL_CLAMP_TO_BORDER);
+		glTexParameteri (GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri (GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+		//use alpha blending to generate the texture
+		glTexImage3D(GL_TEXTURE_3D, 0, GL_ALPHA, lWidth, lHeight, lDepth, 0, GL_ALPHA,GL_UNSIGNED_BYTE, binaryVolumePointer);
+		viewSegmented = 1;
+	}
+}
+
+/**
+*@title generateHistogram
+*@description create the histogram of the dicom series
+**/
+void generateHistogram()
+{
+	//use the statistics filter to get the minimum and maximum values in the DICOM series
+
+	typedef itk::Statistics::ImageToHistogramFilter<volumeImageType > HistogramFilterType;
+	HistogramFilterType::Pointer histogramFilter = HistogramFilterType::New();
+
+	typedef itk::StatisticsImageFilter<volumeImageType> statFilterType;
+	statFilterType::Pointer statFilter = statFilterType::New();
+
+	statFilter->SetInput(volumeImage);
+	statFilter->Update();
+
+	maximum = statFilter->GetMaximum();
+	minimum = statFilter->GetMinimum();
+	tempMax = maximum;
+	tempMin = minimum;
+	range = maximum-minimum;
+
+	//calculate the size of the histogram
+	typedef HistogramFilterType::HistogramSizeType SizeType;
+	SizeType size(1);
+	size[0] = range;
+	histogramFilter->SetHistogramSize(size);
+	histogramFilter->SetInput(volumeImage);
+	histogramFilter->SetAutoMinimumMaximum(true);
+	histogramFilter->SetMarginalScale(1.0);
+	histogramFilter->Update();
+
+	//use and iterator to store the histogram in an array
+
+	typedef HistogramFilterType::HistogramType HistogramType;
+	const HistogramType * histogram = histogramFilter->GetOutput();
+
+	HistogramType::ConstIterator itr = histogram->Begin();
+	HistogramType::ConstIterator end = histogram->End();
+
+	if (xArray) delete [] xArray;
+	if (yArray) delete [] yArray;
+	xArray = new(nothrow) double[range];
+	yArray = new(nothrow) double[range];
+	double binNumber = minimum;
+	highFreq = 0;
+	int index = 0;
+
+	while(itr != end)
+	{
+		xArray[index] = binNumber;
+		yArray[index] = itr.GetFrequency();
+
+		if(itr.GetFrequency() > highFreq)
+		{
+			highFreq = itr.GetFrequency();
+		}
+		++index;
+		++itr;
+		++binNumber;
 	}
 
-    /**
-	 * call backs
-	 */
-	glutDisplayFunc(&DisplayFunc);
-	glutReshapeFunc(&ReshapeFunc);
-	glutKeyboardFunc(&KeyboardFunc);
-	glutMouseFunc(&MouseFunc);
-	glutMotionFunc(&MotionFunc);
-	glutIdleFunc(&IdleFunc);
-	glutMainLoop();
+	tempHighFreq = highFreq;
+	arraySize = index--;
+}
 
-	return 0;
+/**
+*@title rescaleVolumeForDisplay
+*@description rescales the intensity values of the volume
+**/
+void rescaleVolumeForDisplay()
+{
+	typedef itk::RescaleIntensityImageFilter< volumeImageType, scaledVolumeType > RescaleFilterType;
+	RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
+	rescaleFilter->SetInput(volumeImage);
+	rescaleFilter->SetOutputMinimum(0);
+	rescaleFilter->SetOutputMaximum(255);
+	rescaleFilter->Update();
+	scaledVolume = rescaleFilter->GetOutput();
+	scaledVolume->Update();
 }

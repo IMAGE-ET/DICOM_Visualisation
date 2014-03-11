@@ -1,0 +1,61 @@
+/*
+ * segmentationMethods.cxx
+ *
+ *  Created on: 10 Mar 2014
+ *      Author: craig
+ */
+#include <stdio.h>
+#include "global.h"
+/**
+*@title thresholdSegmentation
+*@description segment the volume at the user input value
+* to generate a binary data set
+**/
+void thresholdSegmentation()
+{
+	cout << "Please enter the lower threshold value followed by a <return> or <enter>: ";
+    float lowerThreshold = tempMin;
+
+	while ( !(cin >> lowerThreshold) || (lowerThreshold < tempMin))
+    {
+       	// Enter this loop if input fails because of invalid data.
+
+		cout << "Incorrect value, please try again: ";
+        cin.clear ();   // reset the "failure" flag
+
+        // The input "cursor" is still positioned at the beginning of
+        // the invalid input, so we need to skip past it.
+       	cin.ignore (1000, '\n');
+   	}
+
+	cout << "Please enter the Upper threshold value followed by a <return> or <enter>: ";
+    float upperThreshold = tempMax;
+
+	while ( ! (cin >> upperThreshold) || (upperThreshold < lowerThreshold) || (upperThreshold > tempMax))
+    {
+       	// Enter this loop if input fails because of invalid data.
+
+       	cout << "Incorrect value, please try again: ";
+       	cin.clear ();   // reset the "failure" flag
+
+       	// The input "cursor" is still positioned at the beginning of
+       	// the invalid input, so we need to skip past it.
+
+       	cin.ignore (1000, '\n');
+    }
+
+	//update the volume
+	typedef itk::BinaryThresholdImageFilter < volumeImageType, binaryVolumeType> FilterType;
+
+	FilterType::Pointer thresholdSegmentation = FilterType::New();
+
+	thresholdSegmentation->SetInput(volumeImage);
+	thresholdSegmentation->SetLowerThreshold(lowerThreshold);
+	thresholdSegmentation->SetUpperThreshold(upperThreshold);
+	thresholdSegmentation->SetInsideValue(175);
+	thresholdSegmentation->SetOutsideValue(0);
+	thresholdSegmentation->Update();
+	binaryVolume = thresholdSegmentation->GetOutput();
+}
+
+

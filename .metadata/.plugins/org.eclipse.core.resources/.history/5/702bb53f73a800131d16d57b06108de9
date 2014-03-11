@@ -1,0 +1,69 @@
+/*
+ * global.h
+ *
+ *  Created on: 10 Mar 2014
+ *      Author: craig
+ */
+
+#ifndef GLOBAL_H
+#define GLOBAL_H
+
+#include <ITK-4.5/itkImage.h>
+#include <GL/glut.h>
+
+extern GLuint displayListIndex;
+extern GLuint textureName;
+extern int left_click;
+extern int right_click;
+extern int xold;
+extern int yold;
+extern double xSpacing;
+extern double ySpacing;
+extern double zSpacing;
+extern double *xArray;
+extern double *yArray;
+extern double planeEq0 [4];
+extern double xSliceNumber;
+extern double zSliceNumber;
+extern double ySliceNumber;
+extern double textureDepth;
+extern int graphSize;
+extern int sizeX;
+extern int sizeY;
+extern int sizeZ;
+extern int width;
+extern int height;
+extern int wh;
+extern int hw;
+extern int z;
+extern int noImages;
+extern int xImages;
+extern int yImages;
+extern int window1;
+extern int window2;
+extern int arraySize;
+extern int seedPoint;
+extern int viewSegmented;
+extern int viewVolume;
+extern int viewCrossSection;
+extern int nSeedPoints;
+extern double highFreq;
+extern double tempHighFreq;
+extern signed int range;
+extern float alpha;
+extern float beta;
+extern float imageDepth;
+extern float newRange;
+extern float oldRange;
+extern float zSlice;
+extern float ySlice;
+extern float xSlice;
+extern float seedX;
+extern float seedY;
+extern float volumeAlpha;
+extern signed int maximum;
+extern signed int minimum;
+extern signed int tempMax;
+extern signed int tempMin;
+
+#endif /* GLOBAL_H */

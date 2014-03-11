@@ -1,0 +1,6 @@
+#ifndef HISTOGRAMKEYBOARDFUNC_H
+#define HISTOGRAMKEYBOARDFUNC_H
+
+void histogramKeyboardFunc(unsigned char key, int x, int y, signed int tempMin, signed int minimum, signed int tempMax, signed int maximum, double tempHighFreq, double highFreq);
+
+#endif
