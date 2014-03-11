@@ -74,8 +74,9 @@ typedef itk::Image< InputPixelType, 3 > InputImageType;
 typedef itk::Image< volumePixelType, 3 > volumeImageType;
 typedef itk::Image< scaledPixelType, 3 > scaledVolumeType;
 typedef itk::Image< binaryPixelType, 3 > binaryVolumeType;
-binaryVolumeType::Pointer binaryVolume;
-scaledVolumeType::Pointer scaledVolume;
-volumeImageType::Pointer volumeImage;
+
+extern binaryVolumeType::Pointer binaryVolume;
+extern scaledVolumeType::Pointer scaledVolume;
+extern volumeImageType::Pointer volumeImage;
 
 #endif /* GLOBAL_H */

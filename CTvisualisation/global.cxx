@@ -6,6 +6,7 @@
  */
 
 #include <GL/glut.h>
+#include "global.h"
 
 GLuint displayListIndex;
 GLuint textureName;
@@ -61,3 +62,6 @@ signed int maximum = 0;
 signed int minimum = 0;
 signed int tempMax = 0;
 signed int tempMin = 0;
+binaryVolumeType::Pointer binaryVolume;
+scaledVolumeType::Pointer scaledVolume;
+volumeImageType::Pointer volumeImage;
