@@ -6,7 +6,7 @@
  */
 
 #include <GL/glut.h>
-#include "global.h"
+#include "../headers/global.h"
 
 GLuint displayListIndex;
 GLuint textureName;

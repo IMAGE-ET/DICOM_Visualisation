@@ -5,7 +5,7 @@
  *      Author: craig
  */
 #include <stdio.h>
-#include "global.h"
+#include "../headers/global.h"
 #include <ITK-4.5/itkBinaryThresholdImageFilter.h>
 #include <ITK-4.5/itkConfidenceConnectedImageFilter.h>
 #include <ITK-4.5/itkConnectedThresholdImageFilter.h>

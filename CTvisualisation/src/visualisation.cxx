@@ -33,11 +33,11 @@
 #include	<ITK-4.5/itkConfidenceConnectedImageFilter.h>
 #include 	<ITK-4.5/itkOrientImageFilter.h>
 #include	<mgl2/mgl.h>
-#include	"openGLStatus.h"
-#include	"histogramKeyboardFunc.h"
-#include	"histogramMouseFunc.h"
-#include	"menu.h"
-#include	"global.h"
+#include	"../headers/openGLStatus.h"
+#include	"../headers/histogramKeyboardFunc.h"
+#include	"../headers/histogramMouseFunc.h"
+#include	"../headers/menu.h"
+#include	"../headers/global.h"
 
 
 using namespace std;

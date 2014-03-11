@@ -5,9 +5,9 @@
  *      Author: craig
  */
 
-#include "segmentationMethods.h"
-#include "viewSegmentedData.h"
-#include "global.h"
+#include "../headers/segmentationMethods.h"
+#include "../headers/viewSegmentedData.h"
+#include "../headers/global.h"
 
 /**
 *@title MainMenu
