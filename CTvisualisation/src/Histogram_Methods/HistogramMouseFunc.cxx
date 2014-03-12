@@ -1,5 +1,5 @@
 #include <GL/glut.h>
-#include "../headers/global.h"
+#include "../../headers/global.h"
 
 /**
  * @title MouseFunc
