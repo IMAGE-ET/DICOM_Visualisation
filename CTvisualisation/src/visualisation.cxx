@@ -61,7 +61,6 @@ void MouseFunc(int button, int state, int x, int y);
 void MotionFunc(int x, int y);
 void IdleFunc();
 void compileDisplayLists();
-void HistogramMouseFunc(int button, int state, int x, int y);
 int drawGraph(mglGraph *gr);
 
 

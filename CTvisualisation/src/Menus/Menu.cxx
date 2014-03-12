@@ -3,11 +3,12 @@
  *
  *  Created on: 10 Mar 2014
  *      Author: craig
+ *
  */
 
-#include "../headers/segmentationMethods.h"
-#include "../headers/viewSegmentedData.h"
-#include "../headers/global.h"
+#include "../../headers/segmentationMethods.h"
+#include "../../headers/viewSegmentedData.h"
+#include "../../headers/global.h"
 
 /**
 *@title MainMenu
