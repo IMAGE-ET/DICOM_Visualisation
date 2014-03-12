@@ -1,9 +1,0 @@
-#ifndef openGLStatus_included
-#define openGLStatus_included
-
-public: bool glErrorCheck();
-
-
-#include "glErrorCheck_inline.h"
-
-#endif

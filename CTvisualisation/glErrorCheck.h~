@@ -1,9 +1,0 @@
-#ifndef GLERRORCHECK_H
-#define GLERRORCHECK_H
-#include <iostream>
-#include <GL/gl.h>
-#include <GL/glu.h>
-
-bool glErrorCheck();
-
-#endif
