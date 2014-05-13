@@ -1,21 +1,24 @@
 STUDENT ID	: 500235005
 NAME		: CRAIG PARKINSON
 PROJECT		: Segmentation of Medical Images
-Date		: 1st May 2013
+Date		: 13th May 2014
 
 #################################################################################################
-This disk contains electronic copies of the thesis, videos and screenshots.
-
 The file structure of the disk is self explanatory, with the thesis being in the write up
 folder, demonstrations of the project are found in the videos folder.
 
-The program folder contains the source code, and Test data to be used in the project.
-
-The program requires the ITK library, and MathGL libraries. ITK is to be built with version 3 compatibilty and MathGL is to be built with GLUT and OpenGL variables set to true.
+The program requires the ITK library, and MathGL libraries. ITK is to be built as the latest version and MathGL is to be built with GLUT and OpenGL variables set to true.
 
 The glut library is also required to run this project.
 
 The project is built using CMake.
+
+If you wish to modify the source code to add more segmentation methods, then please use the current format. Create the function that deals with the segmentation
+within the Segmentation_Methods folder, then include it in the header. Lastly add it to the menu.cxx.
+
+This ensures that none of the other code is modified needlessly.
+
+There are some bugs still within the project, it is not fully working so please be aware of this.
 
 #################################################################################################
 
