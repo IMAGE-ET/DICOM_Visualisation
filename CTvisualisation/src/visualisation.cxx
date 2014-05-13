@@ -21,14 +21,9 @@
 #include 	<ITK-4.5/itkImage.h>
 #include 	<iostream>
 #include	<stdio.h>
-#include 	<ITK-4.5/itkImageSeriesReader.h>
-#include 	<ITK-4.5/itkGDCMImageIO.h>
-#include 	<ITK-4.5/itkGDCMSeriesFileNames.h>
 #include 	<ITK-4.5/itkExtractImageFilter.h>
 #include	<ITK-4.5/itkRescaleIntensityImageFilter.h>
 #include	<ITK-4.5/itkBinaryThresholdImageFilter.h>
-#include	<ITK-4.5/itkImageToHistogramFilter.h>
-#include	<ITK-4.5/itkStatisticsImageFilter.h>
 #include	<ITK-4.5/itkConnectedThresholdImageFilter.h>
 #include	<ITK-4.5/itkConfidenceConnectedImageFilter.h>
 #include 	<ITK-4.5/itkOrientImageFilter.h>
@@ -38,7 +33,9 @@
 #include	"../headers/histogramMouseFunc.h"
 #include	"../headers/menu.h"
 #include	"../headers/global.h"
-
+#include	"../headers/importDicomFile.h"
+#include	"../headers/rescaleVolume.h"
+#include	"../headers/histogramDrawFunc.h"
 
 using namespace std;
 
@@ -48,8 +45,6 @@ void volumisedImage();
 void originalCT();
 void xPlane();
 void yPlane();
-void DrawHistogramFunc();
-void ReshapeHistogramFunc(int new_width, int new_height);
 void generateHistogram();
 void rescaleVolumeForDisplay();
 void mainMenu(int value);
@@ -61,7 +56,6 @@ void MouseFunc(int button, int state, int x, int y);
 void MotionFunc(int x, int y);
 void IdleFunc();
 void compileDisplayLists();
-int drawGraph(mglGraph *gr);
 
 
 /**
@@ -70,110 +64,41 @@ int drawGraph(mglGraph *gr);
  */
 int	main(int argc, char **argv)
 {
-	//take in the file directory where the dicom series is stored as a command line argument
-	if(argc < 2)
+	if(argc == 2)
 	{
-		cerr << "Usage: " << argv[0] << " DicomDirectory [seriesName] " << endl;
-		return EXIT_FAILURE;
+		if(importDicomFile(argv[1]) == EXIT_FAILURE)
+		{
+			cout << "There was a problem loading the data set" << endl;
+		}
 	}
 
-	//pointer to Image reader
-	itk::GDCMImageIO::Pointer dicomIO = itk::GDCMImageIO::New();
-
-	//Get the DICOM filenames from the directory
-	itk::GDCMSeriesFileNames::Pointer nameGenerator = itk::GDCMSeriesFileNames::New();
-	nameGenerator->SetDirectory(argv[1]);
-
-	try
-	{
-		//get the Dicom series by the series ID
-		typedef vector< string> seriesIdContainer;
-		const seriesIdContainer & seriesUID = nameGenerator->GetSeriesUIDs();
-
-		seriesIdContainer::const_iterator seriesItr = seriesUID.begin();
-		seriesIdContainer::const_iterator seriesEnd = seriesUID.end();
-
-		cout << endl << "The Directory: " << endl;
-		cout << endl << argv[1] << endl << endl;
-		cout << "Contains the following DICOM Series: ";
-		cout << endl << endl;
-
-		while( seriesItr != seriesEnd)
-		{
-			cout << seriesItr->c_str() << endl;
-			++seriesItr;
-		}
-
-		cout << endl << endl;
-		cout << "Now reading series: " << endl << endl;
-
-		typedef vector< string> fileNamesContainer;
-		fileNamesContainer fileNames;
-
-		if(argc < 4)
-		{
-			cout << seriesUID.begin()->c_str() << endl;
-			fileNames = nameGenerator->GetFileNames(seriesUID.begin()->c_str());
-		}
-		else
-		{
-			cout << argv[2] << endl;
-			fileNames = nameGenerator->GetFileNames(argv[2]);
-		}
-
-		cout << endl << endl;
-
-		//create a series reader
-		typedef itk::ImageSeriesReader< volumeImageType > ReaderType;
-		ReaderType::Pointer reader = ReaderType::New();
-		reader->SetFileNames(fileNames);
-		reader->SetImageIO(dicomIO);
-
-		try
-		{
-			reader->Update();
-		}
-		catch(itk::ExceptionObject &ex)
-		{
-			cout << ex << endl;
-			return EXIT_FAILURE;
-		}
-
-		//create a volume in memory from the series
-		volumeImage = reader->GetOutput();
-		volumeImage->Update();
-
-		itk::OrientImageFilter<volumeImageType,volumeImageType>::Pointer orienter = itk::OrientImageFilter<volumeImageType,volumeImageType>::New();
-		orienter->UseImageDirectionOn();
-		orienter->SetDesiredCoordinateOrientation(itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RIP);
-		orienter->SetInput(volumeImage);
-		orienter->Update();
-		volumeImage = orienter->GetOutput();
+	//create a volume in memory from the series
+	itk::OrientImageFilter<volumeImageType,volumeImageType>::Pointer orienter = itk::OrientImageFilter<volumeImageType,volumeImageType>::New();
+	orienter->UseImageDirectionOn();
+	orienter->SetDesiredCoordinateOrientation(itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RIP);
+	orienter->SetInput(volumeImage);
+	orienter->Update();
+	volumeImage = orienter->GetOutput();
 
 
-		//Generate the histogram based on the Hounsfield units
-		generateHistogram();
+	//Generate the histogram based on the Hounsfield units
+	generateHistogram();
 
-		//Rescaled the volume so that it can be viewed
-		rescaleVolumeForDisplay();
+	//Rescaled the volume so that it can be viewed
+	rescaleVolumeForDisplay();
 
-		//start in the middle of the image
-		InputImageType::RegionType inputRegion = volumeImage->GetLargestPossibleRegion();
-		InputImageType::SizeType volumeSize = inputRegion.GetSize();
+	//start in the middle of the image
+	InputImageType::RegionType inputRegion = volumeImage->GetLargestPossibleRegion();
+	InputImageType::SizeType volumeSize = inputRegion.GetSize();
 
-		//always start the center of the volume
-		noImages = volumeSize[2];
-	    zSliceNumber = noImages/2;
-	    xImages = volumeSize[0];
-	    xSliceNumber = xImages/2;
-	    yImages = volumeSize[1];
-	    ySliceNumber = yImages/2;
-	}
-	catch(itk::ExceptionObject &ex)
-	{
-		cout << ex;
-		return EXIT_FAILURE;
-	}
+	//always start the center of the volume
+	noImages = volumeSize[2];
+	zSliceNumber = noImages/2;
+	xImages = volumeSize[0];
+	xSliceNumber = xImages/2;
+	yImages = volumeSize[1];
+	ySliceNumber = yImages/2;
+
 
 	/**
 	 * create window
@@ -675,93 +600,6 @@ void yPlane()
 }
 
 /**
- * @Title drawGraph
- * @description draw the plots of the graph
- */
-int drawGraph(mglGraph *gr)
-{
-	//create the graph, draw the title
-	gr->Title("Histogram");
-	gr->SetRanges(minimum,maximum,0,highFreq-1);
-	gr->SetOrigin(minimum,0,0);  // first axis
-	gr->SetTuneTicks(0);
-	gr->Axis();
-	//gr->Label('y',"Frequency",-1);
-	gr->Label('x',"Value",0);
-
-	//convert the histogram arrays to mglData arrays
-	mglData x;
-	x.Set(xArray,range);
-	mglData y;
-	y.Set(yArray,range);
-	//plot the values
-	gr->Plot(x,y,"b");
-	return 0;
-}
-
-/**
- * @Title DrawHistogram
- * @description draw the histogram of the data
- */
-void DrawHistogramFunc()
-{
-	glErrorCheck();
-	glClear(GL_COLOR_BUFFER_BIT);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glOrtho(0,graphSize, 0,graphSize,0, 1);
-
-	//generate mglGraph object
-	mglGraph gr;
-	gr.SetSize(graphSize,graphSize);
-	gr.Alpha(true);
-	gr.Light(true);
-	drawGraph(&gr);
-
-	long w=gr.GetWidth(), h=gr.GetHeight();
-
-	//pointer to an array which stores the graph
-	char *buf = new char[4*w*h];
-	gr.GetRGB(buf,4*w*h);
-
-	//flip y axis, for correct drawing
-	glPixelZoom(1, -1);
-	glRasterPos3f(0,graphSize-1,-0.3);
-	glDrawPixels(w,h,GL_RGB,GL_UNSIGNED_BYTE,buf);
-	glutSwapBuffers();
-}
-
-/**
- * @title ReshapeFunc
- * @description called when reshaped or resized
- */
-void ReshapeHistogramFunc(int new_width, int new_height)
-{
-	int hWidth = new_width;
-	int hHeight = new_height;
-
-	//avoid divide by zero
-	if(hWidth == 0)
-	{
-		hWidth = 1;
-	}
-	else if(hHeight == 0)
-	{
-		hHeight = 1;
-	}
-
-	//aspect ratios
-	float heightWidth = hHeight/(float) width;
-	float widthHeight = hWidth/(float) height;
-
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-
-	glMatrixMode(GL_MODELVIEW);
-	glViewport (0, 0, (GLsizei)(hWidth), (GLsizei)(hHeight));
-}
-
-/**
  * @Title DisplayFunc
  * @description update rendering
  */
@@ -1242,87 +1080,4 @@ void generateVolumeTexture()
 		glErrorCheck();
 		glTexImage3D(GL_TEXTURE_3D,0, GL_INTENSITY, lWidth, lHeight, lDepth,0,GL_LUMINANCE,GL_UNSIGNED_BYTE, volumePointer);
 	}
-}
-
-/**
-*@title generateHistogram
-*@description create the histogram of the dicom series
-**/
-void generateHistogram()
-{
-	//use the statistics filter to get the minimum and maximum values in the DICOM series
-
-	typedef itk::Statistics::ImageToHistogramFilter<volumeImageType > HistogramFilterType;
-	HistogramFilterType::Pointer histogramFilter = HistogramFilterType::New();
-
-	typedef itk::StatisticsImageFilter<volumeImageType> statFilterType;
-	statFilterType::Pointer statFilter = statFilterType::New();
-
-	statFilter->SetInput(volumeImage);
-	statFilter->Update();
-
-	maximum = statFilter->GetMaximum();
-	minimum = statFilter->GetMinimum();
-	tempMax = maximum;
-	tempMin = minimum;
-	range = maximum-minimum;
-
-	//calculate the size of the histogram
-	typedef HistogramFilterType::HistogramSizeType SizeType;
-	SizeType size(1);
-	size[0] = range;
-	histogramFilter->SetHistogramSize(size);
-	histogramFilter->SetInput(volumeImage);
-	histogramFilter->SetAutoMinimumMaximum(true);
-	histogramFilter->SetMarginalScale(1.0);
-	histogramFilter->Update();
-
-	//use and iterator to store the histogram in an array
-
-	typedef HistogramFilterType::HistogramType HistogramType;
-	const HistogramType * histogram = histogramFilter->GetOutput();
-
-	HistogramType::ConstIterator itr = histogram->Begin();
-	HistogramType::ConstIterator end = histogram->End();
-
-	if (xArray) delete [] xArray;
-	if (yArray) delete [] yArray;
-	xArray = new(nothrow) double[range];
-	yArray = new(nothrow) double[range];
-	double binNumber = minimum;
-	highFreq = 0;
-	int index = 0;
-
-	while(itr != end)
-	{
-		xArray[index] = binNumber;
-		yArray[index] = itr.GetFrequency();
-
-		if(itr.GetFrequency() > highFreq)
-		{
-			highFreq = itr.GetFrequency();
-		}
-		++index;
-		++itr;
-		++binNumber;
-	}
-
-	tempHighFreq = highFreq;
-	arraySize = index--;
-}
-
-/**
-*@title rescaleVolumeForDisplay
-*@description rescales the intensity values of the volume
-**/
-void rescaleVolumeForDisplay()
-{
-	typedef itk::RescaleIntensityImageFilter< volumeImageType, scaledVolumeType > RescaleFilterType;
-	RescaleFilterType::Pointer rescaleFilter = RescaleFilterType::New();
-	rescaleFilter->SetInput(volumeImage);
-	rescaleFilter->SetOutputMinimum(0);
-	rescaleFilter->SetOutputMaximum(255);
-	rescaleFilter->Update();
-	scaledVolume = rescaleFilter->GetOutput();
-	scaledVolume->Update();
 }
