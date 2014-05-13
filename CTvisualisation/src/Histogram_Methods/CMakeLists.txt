@@ -1,0 +1,3 @@
+SET(HISTOGRAM_SOURCE_FILES HistogramDrawFunc.cxx GenerateHistogramFunc.cxx HistogramKeyboardFunc.cxx HistogramMouseFunc.cxx)
+
+add_library(Histogram_Methods ${HISTOGRAM_SOURCE_FILES})

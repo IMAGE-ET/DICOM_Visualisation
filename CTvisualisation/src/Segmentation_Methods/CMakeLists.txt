@@ -1,0 +1,3 @@
+SET(SEGMENTATION_SOURCE_FILES ThresholdSegmentation.cxx ConnectedThresholdSegmentation.cxx ConfidenceConnectedSegmentation.cxx)
+
+add_library(Segmentation_Methods ${SEGMENTATION_SOURCE_FILES})
