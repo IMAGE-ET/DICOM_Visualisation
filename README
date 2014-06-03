@@ -1,12 +1,8 @@
-STUDENT ID	: 500235005
-NAME		: CRAIG PARKINSON
+AUTHOR		: CRAIG PARKINSON
 PROJECT		: Segmentation of Medical Images
-Date		: 13th May 2014
+Date	  	: 13th May 2014
 
 #################################################################################################
-The file structure of the disk is self explanatory, with the thesis being in the write up
-folder, demonstrations of the project are found in the videos folder.
-
 The program requires the ITK library, and MathGL libraries. ITK is to be built as the latest version and MathGL is to be built with GLUT and OpenGL variables set to true.
 
 The glut library is also required to run this project.
