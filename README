@@ -1,6 +1,6 @@
 AUTHOR		: CRAIG PARKINSON
 PROJECT		: Segmentation of Medical Images
-Date	  	: 13th May 2014
+Date	  	: 17th July 2014
 
 #################################################################################################
 The program requires the ITK library, and MathGL libraries. ITK is to be built as the latest version and MathGL is to be built with GLUT and OpenGL variables set to true.
@@ -14,7 +14,8 @@ within the Segmentation_Methods folder, then include it in the header. Lastly ad
 
 This ensures that none of the other code is modified needlessly.
 
-There are some bugs still within the project, it is not fully working so please be aware of this.
+There are some bugs still within the project, it is not fully working so please be aware of this. 
+Especially as the code is being refactored to a standardised format at the minute. Therefore be aware, the design of the code will change.
 
 #################################################################################################
 
