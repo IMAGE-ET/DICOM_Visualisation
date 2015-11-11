@@ -4,6 +4,9 @@
 /**
  * @title MouseFunc
  * @description called on mouse button
+ *  Author: craig parkinson
+ *  Organisation: Bangor University
+ *  Supervisor: Franck Vidal
  */
 void HistogramMouseFunc(int button, int state, int x, int y)
 {
