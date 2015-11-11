@@ -2,7 +2,9 @@
  * GenerateHistogramFunc.cxx
  *
  *  Created on: 12 Mar 2014
- *      Author: craig
+ *  Author: craig parkinson
+ *  Organisation: Bangor University
+ *  Supervisor: Franck Vidal
  */
 #include	<stdio.h>
 #include	<ITK-4.5/itkImageToHistogramFilter.h>
