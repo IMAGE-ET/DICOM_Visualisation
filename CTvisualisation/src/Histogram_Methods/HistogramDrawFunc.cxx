@@ -5,7 +5,9 @@
  * HistogramDrawFunc.cxx
  *
  *  Created on: 11 May 2014
- *      Author: craig
+ *  Author: craig parkinson
+ *  Organisation: Bangor University
+ *  Supervisor: Franck Vidal
  */
 
 /**
