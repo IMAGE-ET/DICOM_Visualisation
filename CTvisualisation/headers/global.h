@@ -8,7 +8,7 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
-#include <ITK-4.5/itkImage.h>
+#include <ITK-4.8/itkImage.h>
 #include <GL/glut.h>
 
 extern GLuint displayListIndex;
