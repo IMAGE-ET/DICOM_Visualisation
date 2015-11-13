@@ -32,4 +32,4 @@ ADD_SUBDIRECTORY(ITK_Methods)
 ADD_EXECUTABLE(CTvisualisation visualisation.cxx global.cxx viewSegmentedData.cxx)
 
 SET(requiredLibs ${requiredLibs} mgl)
-TARGET_LINK_LIBRARIES(CTvisualisation ITK_Methods Menus Histogram_Methods Segmentation_Methods ${ITK_LIBRARIES} ${MATHGL_LIBRARIES} ${GLUT_LIBRARIES} ${OPENGL_LIBRARIES} ${requiredLibs} ${optionalLibs})
+TARGET_LINK_LIBRARIES(CTvisualisation HEADER_FILES ITK_Methods Menus Histogram_Methods Segmentation_Methods ${ITK_LIBRARIES} ${MATHGL_LIBRARIES} ${GLUT_LIBRARIES} ${OPENGL_LIBRARIES} ${requiredLibs} ${optionalLibs})
