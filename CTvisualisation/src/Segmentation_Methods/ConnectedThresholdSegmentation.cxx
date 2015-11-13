@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include "../../headers/global.h"
-#include <ITK-4.5/itkConnectedThresholdImageFilter.h>
+#include <ITK-4.8/itkConnectedThresholdImageFilter.h>
 
 using namespace std;
 

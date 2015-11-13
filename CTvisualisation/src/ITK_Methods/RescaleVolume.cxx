@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "../../headers/global.h"
-#include <ITK-4.5/itkRescaleIntensityImageFilter.h>
+#include <ITK-4.8/itkRescaleIntensityImageFilter.h>
 
 /*
  * RescaleVolume.cxx

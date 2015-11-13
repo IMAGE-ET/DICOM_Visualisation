@@ -6,7 +6,7 @@
  */
 #include <stdio.h>
 #include "../../headers/global.h"
-#include <ITK-4.5/itkConfidenceConnectedImageFilter.h>
+#include <ITK-4.8/itkConfidenceConnectedImageFilter.h>
 
 using namespace std;
 

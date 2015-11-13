@@ -6,9 +6,9 @@
  */
 
 #include	<stdio.h>
-#include 	<ITK-4.5/itkImageSeriesReader.h>
-#include 	<ITK-4.5/itkGDCMImageIO.h>
-#include 	<ITK-4.5/itkGDCMSeriesFileNames.h>
+#include 	<ITK-4.8/itkImageSeriesReader.h>
+#include 	<ITK-4.8/itkGDCMImageIO.h>
+#include 	<ITK-4.8/itkGDCMSeriesFileNames.h>
 #include	"../../headers/global.h"
 
 using namespace std;

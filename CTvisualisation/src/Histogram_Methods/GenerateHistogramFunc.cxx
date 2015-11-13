@@ -7,8 +7,8 @@
  *  Supervisor: Franck Vidal
  */
 #include	<stdio.h>
-#include	<ITK-4.5/itkImageToHistogramFilter.h>
-#include	<ITK-4.5/itkStatisticsImageFilter.h>
+#include	<ITK-4.8/itkImageToHistogramFilter.h>
+#include	<ITK-4.8/itkStatisticsImageFilter.h>
 #include	"../../headers/global.h"
 
 using namespace std;

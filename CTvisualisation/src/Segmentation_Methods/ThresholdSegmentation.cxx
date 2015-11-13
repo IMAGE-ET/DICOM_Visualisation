@@ -6,7 +6,7 @@
  */
 #include <stdio.h>
 #include "../../headers/global.h"
-#include <ITK-4.5/itkBinaryThresholdImageFilter.h>
+#include <ITK-4.8/itkBinaryThresholdImageFilter.h>
 
 using namespace std;
 
