@@ -17,5 +17,30 @@ This ensures that none of the other code is modified needlessly.
 There are some bugs still within the project, it is not fully working so please be aware of this. 
 Especially as the code is being refactored to a standardised format at the minute. Therefore be aware, the design of the code will change.
 
+
+STEPS
+
+1) check out the source code into DICOM_Visualisation/ folder
+
+2) create a build folder in the DICOM_Visualisation/CTvisualisation/ folder
+
+3) open CMake
+
+4) set DICOM_visualisation/CTvisualisation folder as source folder
+
+5) set DICOM_visualisation/CTvisualisation/build as the build folder
+
+5) press configure
+
+6) set a pre-processor flag of -D_APPLE_ or -D_MACH_ if using OSX
+
+7) press configure again
+
+8) press generate
+
+9) Open eclipse, import the CTvisualisation folder as an existing code with makefile project
+
+10) Set the build path of the imported eclipse project to DICOM_visualisation/CTvisualisation/build
+
 #################################################################################################
 
